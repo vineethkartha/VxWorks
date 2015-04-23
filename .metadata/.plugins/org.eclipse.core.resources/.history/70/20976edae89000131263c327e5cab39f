@@ -1,0 +1,15 @@
+#include<vxworks.h>
+#include<taskLib.h>
+
+int hello_task1id;
+void hello_task1(void);
+
+int hello()
+{
+hello_task1id=taskSpawn("Hello",0x100,2000,(FUNCPTR)hello_task1,0,0,0,0,0,0,0,0,0,0);
+}
+
+void hello_task1()
+{
+	printf("\n Hello World\n");
+}

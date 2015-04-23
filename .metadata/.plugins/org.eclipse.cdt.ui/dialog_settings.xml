@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.cdt.internal.ui.text.QuickOutline">
+		<item key="org.eclipse.cdt.internal.ui.text.COutlineInformationControlDIALOG_USE_PERSISTED_BOUNDS" value="false"/>
+	</section>
+	<section name="org.eclipse.cdt.internal.ui.browser.opentype.OpenTypeActionSettings">
+		<item key="show_structs" value="true"/>
+		<item key="show_namespaces" value="true"/>
+		<item key="width" value="615"/>
+		<item key="show_functions" value="true"/>
+		<item key="show_typedefs" value="true"/>
+		<item key="show_macros" value="true"/>
+		<item key="show_lowlevel" value="true"/>
+		<item key="show_classes" value="true"/>
+		<item key="height" value="741"/>
+		<item key="y" value="27"/>
+		<item key="show_unions" value="true"/>
+		<item key="show_variables" value="true"/>
+		<item key="x" value="376"/>
+		<item key="show_enums" value="true"/>
+	</section>
+	<section name="completion_proposal_size">
+	</section>
+</section>

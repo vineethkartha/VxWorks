@@ -1,0 +1,22 @@
+
+#include "vxWorks.h"
+#include "ioLib.h"
+
+int serial_test_main()
+{
+/* store number of bytes written */
+int n = 0;
+/* hold the file descriptor */
+int fd = 0;
+/* dev name from iosDevShow output */
+char dev_name[] = "/tyCo/0";
+/* something to write */
+char hi[] = "hello there\n";
+/* length of string to write */
+int hi_len = 13;
+/* open the device for writing. */
+fd = open( "/tyCo/0", O_RDWR, 0);
+n = write( fd, hi, hi_len); /* write */
+close( fd ); /* close */
+return 0; /* done */
+}

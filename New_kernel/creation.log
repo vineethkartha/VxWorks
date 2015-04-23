@@ -1,0 +1,4 @@
+Output of /home/kartha/WindRiver/vxworks-6.6/host/x86-linux2/bin/vxprj create /home/kartha/WindRiver/vxworks-6.6/target/config/linux diab /home/kartha/programs/VxWorks/New_kernel/New_kernel.wpj -inet6 -amp:
+
+Creating Project ...
+Project created in : /home/kartha/programs/VxWorks/New_kernel/New_kernel.wpj

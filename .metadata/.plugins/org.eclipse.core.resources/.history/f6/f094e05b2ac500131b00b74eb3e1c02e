@@ -1,0 +1,63 @@
+
+#include "vxWorks.h"
+#include <stdio.h>
+#include "sysLib.h"
+#include "intLib.h"
+#include "taskLib.h"
+
+#include<time.h>
+
+LOCAL BOOL sysTimestampRunning=FALSE;
+LOCAL FUNCPTR sysClkRoutine	= NULL; 
+LOCAL int sysClkArg		= 0;
+STATUS sysTimestampEnable (void)
+{
+	if (sysTimestampRunning)
+	{
+		printf("\n Already running\n");
+		return OK;
+	}
+	sysTimestampRunning = TRUE;
+	sysClkEnable ();
+	return (OK);
+}
+
+STATUS sysTimestampDisable (void)
+{
+	sysTimestampRunning = FALSE;
+	return (ERROR);
+}
+
+UINT32 sysTimestampPeriod (void)
+{
+	printf("%d\n",sysTimestampFreq ()/sysClkRateGet ());
+	return (sysTimestampFreq ()/sysClkRateGet ());
+}
+
+UINT32 sysTimestampFreq (void)
+{
+	UINT32 timerFreq=0;
+
+//timerFreq = clock input frequency / prescaler
+
+	return (timerFreq);
+}
+
+void sysClkInt (void)
+{
+	if (sysClkRoutine != NULL)
+		(* sysClkRoutine) (sysClkArg);
+}
+STATUS sysClkConnect(FUNCPTR routine,int arg)
+{
+	sysClkRoutine	= routine;
+}
+UINT32 sysTimestamp (void)
+{
+
+}
+
+UINT32 sysTimestampLock (void)
+{
+
+}

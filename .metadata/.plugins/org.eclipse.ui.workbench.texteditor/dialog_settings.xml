@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item key="DIALOG_X_ORIGIN" value="527"/>
+		<item key="DIALOG_FONT_NAME" value="1|Cantarell|11.0|0|GTK|1|"/>
+		<item key="DIALOG_HEIGHT" value="472"/>
+		<item key="DIALOG_Y_ORIGIN" value="56"/>
+		<item key="DIALOG_WIDTH" value="315"/>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item key="wholeword" value="false"/>
+		<item key="incremental" value="false"/>
+		<item key="isRegEx" value="false"/>
+		<item key="selection" value="usbdInitialize"/>
+		<item key="wrap" value="false"/>
+		<item key="casesensitive" value="false"/>
+		<list key="findhistory">
+			<item value="usbdInitialize"/>
+			<item value="set_device"/>
+			<item value="set"/>
+		</list>
+		<list key="replacehistory">
+		</list>
+	</section>
+</section>

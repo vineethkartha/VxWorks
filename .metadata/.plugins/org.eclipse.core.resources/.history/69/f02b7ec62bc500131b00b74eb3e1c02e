@@ -1,0 +1,6 @@
+#include"timer1.h"
+
+int main_timer()
+{
+ sysClkInt();
+}

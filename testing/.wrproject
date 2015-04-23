@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wrxml>
+    <properties platform="VxWorks" platform_name="vxworks-6.6" root="1" type="BoardSupportPackageProject"/>
+    <attributes>
+        <mapAttribute>
+            <listAttribute key="BLD::Info|GlobalMacros">
+                <stringAttribute value="BSP_DIR"/>
+                <stringAttribute value="TOOL_CHAIN"/>
+            </listAttribute>
+            <stringAttribute key="BLD::Info|GlobalMacro|BSP_DIR" value="$(WIND_HOME)/vxworks-6.6/target/config/integrator920t"/>
+            <stringAttribute key="BLD::Info|GlobalMacro|TOOL_CHAIN" value="gnu"/>
+            <listAttribute key="BLD::Info|Tools">
+                <stringAttribute value="BSP Build Rule"/>
+            </listAttribute>
+            <booleanAttribute key="BLD::Info|Tool|BSP Build Rule|object" value="true"/>
+            <stringAttribute key="BLD::Info|cmd" value="make --no-print-directory"/>
+            <stringAttribute key="BLD::Info|defaultSpec" value="bootloader"/>
+            <stringAttribute key="BLD::Info|redirDir|bootloader" value="bootloader"/>
+            <stringAttribute key="BLD::Info|redirRoot" value=""/>
+            <listAttribute key="BLD::Info|specs">
+                <stringAttribute value="bootloader"/>
+                <stringAttribute value="bootloader.bin"/>
+                <stringAttribute value="bootloader.hex"/>
+                <stringAttribute value="bootloader_uncmp"/>
+                <stringAttribute value="bootloader_uncmp.bin"/>
+                <stringAttribute value="bootloader_uncmp.hex"/>
+                <stringAttribute value="bootloader_res"/>
+                <stringAttribute value="bootloader_res.bin"/>
+                <stringAttribute value="bootloader_res.hex"/>
+                <stringAttribute value="bootloader_res_high"/>
+                <stringAttribute value="bootloader_res_high.bin"/>
+                <stringAttribute value="bootloader_res_high.hex"/>
+            </listAttribute>
+            <listAttribute key="BLD::Tgt|Targets">
+                <stringAttribute value="integrator920t"/>
+            </listAttribute>
+            <stringAttribute key="BLD::Tgt|Target|integrator920t|ToolName" value="BSP Build Rule"/>
+            <intAttribute key="BuildSupportEnabled" value="1"/>
+            <booleanAttribute key="BuildTargetCentric" value="false"/>
+        </mapAttribute>
+    </attributes>
+</wrxml>

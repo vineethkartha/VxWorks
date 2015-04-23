@@ -1,0 +1,8 @@
+#Wed Feb 12 19:13:03 IST 2014
+eclipse.preferences.version=1
+indexer/indexAllFiles=false
+indexer/skipReferences=false
+indexer/skipTypeReferences=true
+indexer/updatePolicy=1
+indexer/filesToParseUpFront=stdarg.h, stddef.h, sys/types.h
+indexer/indexerId=org.eclipse.cdt.core.fastIndexer

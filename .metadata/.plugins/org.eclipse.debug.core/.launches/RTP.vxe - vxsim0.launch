@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launchConfiguration type="com.windriver.ide.launch.vxworks6.tmRunRTP">
+<booleanAttribute key="com.windriver.ide.launch.attachSpawned" value="false"/>
+<booleanAttribute key="com.windriver.ide.launch.forceTidMatch" value="false"/>
+<stringAttribute key="com.windriver.ide.launch.processArgs" value=""/>
+<stringAttribute key="com.windriver.ide.launch.processBreakAtSymbol" value="main"/>
+<booleanAttribute key="com.windriver.ide.launch.processBreakOnEntry" value="true"/>
+<stringAttribute key="com.windriver.ide.launch.processEnv" value="LD_BIND_NOW=1"/>
+<stringAttribute key="com.windriver.ide.launch.processExecPath" value="nirvana:/home/kartha/programs/VxWorks/RTP/SIMPENTIUMdiab_RTP/RTP/Debug/RTP.vxe"/>
+<mapAttribute key="com.windriver.ide.launch.processOptions"/>
+<intAttribute key="com.windriver.ide.launch.processPriority" value="100"/>
+<stringAttribute key="com.windriver.ide.launch.processRunType" value="RTP"/>
+<stringAttribute key="com.windriver.ide.launch.processStackSize" value="0x10000"/>
+<listAttribute key="com.windriver.ide.launch.projectsForBuild">
+<listEntry value="RTP"/>
+</listAttribute>
+<stringAttribute key="com.windriver.ide.launch.targetConnection" value="{_map_;name;vxsim0;type;com.windriver.ide.target.vxsim.VxSimConnectType;version;0.6;wtxProtocolVersion;4;user;kartha;private;true;tgtsrv.args;-B wdbpipe -R /home/kartha/programs/VxWorks -RW -Bt 10 -A vxsim0;wrs.platform;vxworks-6.6;wrs.subtype;vxworks;generic;{_map_;NAME_MAPPING;[*\;*.unstripped],[*\;*];isFetchTargetStateOnConnect;false;listenToStartExitEvents;true;Breakpoint.default.stopScope;stop-triggering;targetStateUpdateStrategy;manual;TYPE;Standard;periodicRefreshDelayInSeconds;15;PATH_MAPPING;[nirvana:\;]d,[/tgtsvr/\;/home/kartha/programs/VxWorks/]d,[\;]d;KERNEL_IMAGE;/home/kartha/WindRiver/vxworks-6.6/target/proj/linux_diab/default/vxWorks;DEVICE;WTX_VXWORKS;PROCESSOR_NO;0;isFetchTargetStateOnStop;false;PROCESS_PRIORITY;BelowNormal;isFetchTargetStateOnRun;false;}transient;{_map_;transient.tgtsvr.args;-n vxsim0 -B wdbpipe vxsim0 -R /home/kartha/programs/VxWorks -RW -Bt 10 -A vxsim0;transient.bootflags.default;0x0;transient.hostdevice.default;nirvana:;transient.bootpath.default;/home/kartha/WindRiver/vxworks-6.6/target/proj/linux_diab/default/vxWorks;transient.boothost.default;nirvana:;}regHost;localhost;regKey;kartha_1391880910929;}"/>
+<stringAttribute key="com.windriver.ide.launch.targetMode" value=""/>
+<stringAttribute key="com.windriver.ide.launch.taskName" value=""/>
+</launchConfiguration>

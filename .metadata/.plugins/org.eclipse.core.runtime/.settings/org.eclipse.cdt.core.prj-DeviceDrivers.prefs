@@ -1,0 +1,10 @@
+#Thu Feb 13 23:02:17 IST 2014
+indexer/indexerId=org.eclipse.cdt.core.fastIndexer
+indexer/indexImportLocation=.settings/cdt-index.zip
+indexer/updatePolicy=1
+indexer/filesToParseUpFront=stdarg.h, stddef.h, sys/types.h
+indexer/skipTypeReferences=true
+indexer/skipReferences=false
+indexer/indexAllFiles=false
+eclipse.preferences.version=1
+indexer/preferenceScope=0

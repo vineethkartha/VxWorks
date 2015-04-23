@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launchConfiguration type="com.windriver.ide.launch.tmAttachType">
+<booleanAttribute key="com.windriver.ide.launch.attachSpawned" value="false"/>
+<listAttribute key="com.windriver.ide.launch.coreNames">
+<listEntry value="SIMLINUX"/>
+</listAttribute>
+<booleanAttribute key="com.windriver.ide.launch.forceTidMatch" value="false"/>
+<listAttribute key="com.windriver.ide.launch.objNames">
+<listEntry value="tMyDriver"/>
+</listAttribute>
+<listAttribute key="com.windriver.ide.launch.objTids">
+<listEntry value="0x616fa998"/>
+</listAttribute>
+<listAttribute key="com.windriver.ide.launch.objTypes">
+<listEntry value="KernelTask"/>
+</listAttribute>
+<listAttribute key="com.windriver.ide.launch.projectsForBuild"/>
+<stringAttribute key="com.windriver.ide.launch.targetConnection" value="{_map_;name;vxsim0;type;com.windriver.ide.target.vxsim.VxSimConnectType;version;0.6;wtxProtocolVersion;4;user;kartha;private;true;tgtsrv.args;-B wdbpipe -R /home/kartha/programs/VxWorks -RW -Bt 10 -A vxsim0;wrs.platform;vxworks-6.6;wrs.subtype;vxworks;generic;{_map_;NAME_MAPPING;[*\;*.unstripped],[*\;*];isFetchTargetStateOnConnect;false;listenToStartExitEvents;true;Breakpoint.default.stopScope;stop-triggering;targetStateUpdateStrategy;manual;TYPE;Standard;periodicRefreshDelayInSeconds;15;KERNEL_IMAGE;/home/kartha/WindRiver/vxworks-6.6/target/proj/linux_diab/default/vxWorks;PATH_MAPPING;[nirvana:\;]d,[/tgtsvr/\;/home/kartha/programs/VxWorks/]d,[\;]d;isFetchTargetStateOnStop;false;PROCESSOR_NO;0;DEVICE;WTX_VXWORKS;PROCESS_PRIORITY;BelowNormal;isFetchTargetStateOnRun;false;}transient;{_map_;transient.tgtsvr.args;-n vxsim0 -B wdbpipe vxsim0 -R /home/kartha/programs/VxWorks -RW -Bt 10 -A vxsim0;transient.hostdevice.default;nirvana:;transient.bootflags.default;0x0;transient.bootpath.default;/home/kartha/WindRiver/vxworks-6.6/target/proj/linux_diab/default/vxWorks;transient.boothost.default;nirvana:;}regHost;localhost;regKey;kartha_1391880910929;}"/>
+<stringAttribute key="com.windriver.ide.launch.targetMode" value="Task"/>
+<listAttribute key="com.windriver.ide.launch.threadIds">
+<listEntry value="29"/>
+</listAttribute>
+</launchConfiguration>

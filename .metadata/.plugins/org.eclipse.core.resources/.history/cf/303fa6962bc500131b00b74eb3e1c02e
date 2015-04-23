@@ -1,0 +1,900 @@
+/* unixTimer.c - UNIX simulator timer library */
+
+/*
+ * Copyright (c) 2003-2004,2007 Wind River Systems, Inc.
+ *
+ * The right to copy, distribute, modify or otherwise make use of this
+ * software may be licensed only pursuant to the terms of an applicable
+ * Wind River license agreement.
+ */
+
+
+/*
+modification history
+--------------------
+01g,18sep07,elp  fixed spinlock release in error cases (CQ:WIND104933),
+		 prevent timestamp race condition in SMP.
+01f,21aug07,elp  added SMP support.
+01e,28oct04,jmp  Set SIMLINUX system clock to 50 ticks/seconds to fix linux
+                 system clock resolution (SPR #103210).
+01d,17jun03,dbt  Set default clock rate to 60 (none was specified before).
+01c,30apr03,dbt  Added support for timestamp timer.
+01b,25apr03,dbt  Added intConnect() calls (moved from sysLib.c).
+01a,12feb03,jeg  written
+*/
+
+/*
+DESCRIPTION
+This driver exposes UNIX timer objects in a vxWorks way, allowing
+them to be used as the system and auxiliary clocks.
+
+The macros SYS_CLK_RATE_MIN, SYS_CLK_RATE_MAX, AUX_CLK_RATE_MIN, and
+AUX_CLK_RATE_MAX must be defined to provide parameter checking for the
+sys[Aux]ClkRateSet() routines.
+*/
+
+#include <private/vxsimHostLibP.h>
+#include <spinLockLib.h>
+
+/* defines */
+
+#define SYS_CLK                 0       /* system clock         */
+#define AUX_CLK                 1       /* auxiliary clock      */
+
+#ifndef AUX_CLK_RATE_MIN
+#define AUX_CLK_RATE_MIN        SYS_CLK_RATE_MIN
+#endif
+
+#ifndef AUX_CLK_RATE_MAX
+#define AUX_CLK_RATE_MAX        SYS_CLK_RATE_MAX
+#endif
+
+/*
+ * The SIMLINUX clock rate is set to 50 ticks per seconds to fit with linux
+ * system clock resolution which is 10msec. The SIMLINUX clock rate must be
+ * configured to generate a number of ticks which is a multiple of the linux
+ * system clock resolutions. For example:
+ *	10msec	=> 100 ticks / seconds (1000msec/10)
+ *	20msec  => 50 ticks / seconds (1000msec/20)
+ */
+
+#if (CPU == SIMLINUX)
+#define SYS_CLK_RATE_DEFAULT	50
+#define AUX_CLK_RATE_DEFAULT	50
+#else	/* !SIMLINUX */
+#define SYS_CLK_RATE_DEFAULT	60
+#define AUX_CLK_RATE_DEFAULT	60
+#endif /* SIMSPARCSOLARIS */
+
+#define	SYS_VIRTUAL_TIME 0	/* 1=sys is virtual, 0=strict realtime  */
+#define	AUX_VIRTUAL_TIME 0	/* 1=aux is virtual, 0=derived from sys */
+
+#define SIG_ALARM	0	/* alarm signal 			*/
+#define SIG_VTALARM	1	/* virtual time alarm signal		*/
+
+#ifdef _WRS_VX_SMP
+#define TIMER_SPIN_LOCK_ISR_TAKE(lock,taken)	\
+    if (timerIsInitialized)			\
+    	{					\
+    	SPIN_LOCK_ISR_TAKE(lock);		\
+	taken = TRUE;				\
+	}
+
+#define TIMER_SPIN_LOCK_ISR_GIVE(lock,taken)	\
+    if (taken)					\
+    	{					\
+    	SPIN_LOCK_ISR_GIVE(lock);		\
+	taken = FALSE;				\
+	}
+#else /* _WRS_VX_SMP */
+#define TIMER_SPIN_LOCK_ISR_TAKE(lock,taken)
+#define TIMER_SPIN_LOCK_ISR_GIVE(lock,taken)
+#endif /* _WRS_VX_SMP */
+
+typedef void (*CLK_FUNCPTR) (int arg);
+
+/* locals */
+
+LOCAL BOOL		timerIsInitialized = FALSE;
+#ifdef _WRS_VX_SMP
+LOCAL spinlockIsr_t	timerLock;
+#endif /* _WRS_VX_SMP */
+LOCAL CLK_FUNCPTR	timerRoutine [2]; /* timers interruption routine     */
+LOCAL int       timerArg [2];		 /* timers interruption routine arg */
+LOCAL BOOL      timerConnected [2] = {FALSE, FALSE}; /* timers IT connected */
+LOCAL BOOL      timerRunning [2] = {FALSE, FALSE};   /* timers enabled	    */
+LOCAL int       timerTicksPerSecond [2] = {SYS_CLK_RATE_DEFAULT,
+					   AUX_CLK_RATE_DEFAULT};
+
+#ifdef INCLUDE_TIMESTAMP
+LOCAL 	FUNCPTR sysTimestampRoutine = NULL;     /* rollover routine          */
+LOCAL 	int	sysTimestampArg;		/* rollover routine argument */	
+LOCAL   int     sysTimestampRunning = FALSE;	/* timestamp driver 	     */
+						/* activated		     */ 
+LOCAL 	UINT32 	tsPrevValue  = 0;		/* previous timestamp value  */
+LOCAL   UINT32	tsRolloverNumber = 0;		/* number of rollover	     */ 
+						/* detected		     */ 
+#endif /*INCLUDE_TIMESTAMP*/
+
+/* forward static declarations */
+
+LOCAL void	sysAuxClkInt (void);
+LOCAL void	sysClkInt (int src);
+#ifdef INCLUDE_TIMESTAMP
+LOCAL void	sysTimestampInt (void);
+#endif /*INCLUDE_TIMESTAMP*/
+
+/******************************************************************************
+*
+* unixTimerInit - initialize timer
+*
+* This routine initializes timer
+*
+* RETURNS:N/A
+*/
+
+void unixTimerInit (void)
+    {
+    if (!timerIsInitialized)
+	{
+#ifdef _WRS_VX_SMP
+	SPIN_LOCK_ISR_INIT (&timerLock, 0); /* initialize spin lock */
+#endif /* _WRS_VX_SMP */
+
+	vxsimHostTimerInit (SYS_VIRTUAL_TIME, AUX_VIRTUAL_TIME);
+	timerIsInitialized = TRUE;
+	}
+    }
+
+/*******************************************************************************
+*
+* sysClkInt - handle system clock interrupts
+*
+* This routine handles system clock interrupts.
+*
+* RETURNS: N/A
+*
+* ERRNO: N/A
+*  
+* NOMANUAL
+*/
+
+LOCAL void sysClkInt
+    (
+    int	src		/* real timer of virtual timer */
+    )
+    {
+    CLK_FUNCPTR	clkRtn = NULL;	/* clock handler */
+    int		clkArg = 0;	/* clock handler argument */
+#if     !AUX_VIRTUAL_TIME
+    LOCAL int   remainderTicks;
+    int         extraTicks = 0;
+#endif /* !AUX_VIRTUAL_TIME */
+#ifdef INCLUDE_TIMESTAMP
+    BOOL	rollOver = FALSE;
+    UINT32	tsValue;
+#endif /* INCLUDE_TIMESTAMP */
+
+    /**
+     * When the WIND kernel goes into hard loop, it suspends the entire
+     * process and allows ALRM to keep track of time.  Virtual time (VTALRM)
+     * does not pass when a process is suspended -- which the WIND kernel
+     * does whenever no tasks are runnable.
+     */
+#ifdef _WRS_VX_SMP
+    SPIN_LOCK_ISR_TAKE(&timerLock);
+#endif /* _WRS_VX_SMP */
+
+#if SYS_VIRTUAL_TIME
+    extern int vxsimHostSigsuspendflag;
+
+    if (!vxsimHostSigsuspendflag)
+        {
+        /* process running: count virtual clock ticks, ignore realtime */
+
+        if (src == SIG_VTALARM)
+            {
+	    clkRtn = timerRoutine[SYS_CLK];
+	    clkArg = timerArg [SYS_CLK];
+
+#if !AUX_VIRTUAL_TIME
+        if (timerRunning [SYS_CLK])
+            {
+            extraTicks =  timerTicksPerSecond [AUX_CLK] /
+	    		  timerTicksPerSecond [SYS_CLK];
+            remainderTicks += timerTicksPerSecond [AUX_CLK] % 
+	    		      timerTicksPerSecond [SYS_CLK];
+
+            if (remainderTicks > timerTicksPerSecond [SYS_CLK])
+                {
+                extraTicks++;
+                remainderTicks -= timerTicksPerSecond [SYS_CLK];
+                }
+            }
+#endif /* !AUX_VIRTUAL_TIME */
+            }
+        }
+    else
+#endif  /* SYS_VIRTUAL_TIME */
+
+    if (src == SIG_ALARM)
+        {
+	clkRtn = timerRoutine[SYS_CLK];
+	clkArg = timerArg [SYS_CLK];
+
+#if     !AUX_VIRTUAL_TIME
+        if (timerRunning[AUX_CLK])
+            {
+            extraTicks = timerTicksPerSecond [AUX_CLK] /
+	    		  timerTicksPerSecond [SYS_CLK];
+            remainderTicks += timerTicksPerSecond [AUX_CLK] % 
+	    		      timerTicksPerSecond [SYS_CLK];
+            if (remainderTicks > timerTicksPerSecond [SYS_CLK])
+                {
+                extraTicks++;
+                remainderTicks -= timerTicksPerSecond [SYS_CLK];;
+                }
+            }
+#endif /* !AUX_VIRTUAL_TIME */
+
+	}
+#ifdef INCLUDE_TIMESTAMP
+    if (sysTimestampRunning)
+    	{
+	/*
+	 * This code is moved here to avoid race condition in SMP in
+	 * sysTimestamp(). Clock rate guaranties that at least a tick is
+	 * raised during a timestamp loop.
+	 */
+
+	tsValue = vxsimHostTimerTimestampGet ();
+
+	/*
+	 * Check if there was a rollover. If yes, set <rollOver>
+	 * boolean so that rollover event is posted at the end of this system
+	 * clock interrupt handling.
+	 */
+
+	if (tsValue < tsPrevValue)
+	    {
+	    tsPrevValue = tsValue;
+	    /*
+	     * if a rollover is detected, then a ROLL_OVER event is posted and
+	     * the rollover counter is incremented.
+	     */
+
+	    rollOver = TRUE;
+	    tsRolloverNumber ++;
+	    }
+	}
+#endif /*INCLUDE_TIMESTAMP*/
+
+#ifdef _WRS_VX_SMP
+    SPIN_LOCK_ISR_GIVE(&timerLock);
+#endif /* _WRS_VX_SMP */
+
+    if (clkRtn != NULL)
+	(*clkRtn ) (clkArg);
+
+#if     !AUX_VIRTUAL_TIME
+    while (extraTicks--)
+	sysAuxClkInt ();
+#endif /* !AUX_VIRTUAL_TIME */
+
+#ifdef INCLUDE_TIMESTAMP
+    if (rollOver)
+	sysTimestampInt ();
+#endif /*INCLUDE_TIMESTAMP*/
+    }
+
+/*******************************************************************************
+*
+* sysClkConnect - connect a routine to the system clock interrupt
+*
+* This routine specifies the interrupt service routine to be called at each
+* clock interrupt.  Normally, it is called from usrRoot() in prjConfig.c to
+* connect usrClock() to the system clock interrupt.
+*
+* RETURN: OK, always.
+*
+* SEE ALSO: intConnect(), usrClock(), sysClkEnable()
+*/
+
+STATUS sysClkConnect
+    (
+    FUNCPTR routine,	/* routine called at each system clock interrupt */
+    int arg		/* argument with which to call routine */
+    )
+    {
+#ifdef _WRS_VX_SMP
+    BOOL spinTaken = FALSE;
+#else
+    int key;
+#endif /* WRS_VX_SMP */
+
+    TIMER_SPIN_LOCK_ISR_TAKE(&timerLock, spinTaken);
+
+    if (!timerConnected [SYS_CLK])
+	{
+	timerConnected [SYS_CLK] = TRUE;
+	TIMER_SPIN_LOCK_ISR_GIVE(&timerLock, spinTaken);
+	sysHwInit2();
+
+	(void)intConnect ((VOIDFUNCPTR*)IV_CLOCK1, sysClkInt, SIG_ALARM);
+
+#if	SYS_VIRTUAL_TIME
+	/* when using virtual timer, need realtime for ticks when suspended */
+	
+	(void)intConnect ((VOIDFUNCPTR*)IV_CLOCK2, sysClkInt, SIG_VTALARM);
+#endif	/* SYS_VIRTUAL_TIME */
+	
+	TIMER_SPIN_LOCK_ISR_TAKE(&timerLock, spinTaken);
+	}
+
+#ifndef _WRS_VX_SMP
+    key = intCpuLock ();
+#endif /* !_WRS_VX_SMP */
+
+    timerRoutine [SYS_CLK] = (CLK_FUNCPTR)routine;    
+    timerArg [SYS_CLK] = arg;
+
+#ifdef _WRS_VX_SMP
+    TIMER_SPIN_LOCK_ISR_GIVE(&timerLock, spinTaken);
+#else
+    intCpuUnlock(key);
+#endif /* _WRS_VX_SMP */
+
+    return (OK);
+    }
+
+/*******************************************************************************
+*
+* sysClkDisable - turn off system clock interrupts
+*
+* This routine disables system clock interrupts.
+*
+* RETURNS: N/A
+*
+* SEE ALSO: sysClkEnable()
+*/
+
+void sysClkDisable (void)
+    {
+#ifdef _WRS_VX_SMP
+    BOOL spinTaken = FALSE;
+#endif /* WRS_VX_SMP */
+
+    TIMER_SPIN_LOCK_ISR_TAKE(&timerLock, spinTaken);
+
+    if (timerRunning [SYS_CLK])
+    	{
+	vxsimHostTimerDisable (SYS_CLK);
+	timerRunning [SYS_CLK] = FALSE;
+	}
+
+    TIMER_SPIN_LOCK_ISR_GIVE(&timerLock, spinTaken);
+    }
+
+/********************************************************************************
+* sysClkEnable - turn on system clock interrupts
+*
+* This routine enables system clock interrupts.
+*
+* RETURNS: N/A
+*
+* SEE ALSO: sysClkConnect(), sysClkDisable(), sysClkRateSet()
+*/
+
+void sysClkEnable (void)
+    {
+    unixTimerInit ();
+#ifdef _WRS_VX_SMP
+    SPIN_LOCK_ISR_TAKE(&timerLock);
+#endif /* WRS_VX_SMP */
+
+    if (!timerRunning [SYS_CLK])
+    	{
+	vxsimHostTimerEnable (SYS_CLK,  timerTicksPerSecond [SYS_CLK]);
+	timerRunning [SYS_CLK] = TRUE;
+	}
+
+#ifdef _WRS_VX_SMP
+    SPIN_LOCK_ISR_GIVE(&timerLock);
+#endif /* WRS_VX_SMP */
+    }
+
+/*******************************************************************************
+*
+* sysClkRateSet - set the system clock rate
+*
+* This routine sets the interrupt rate of the system clock.
+* It does not enable auxiliary clock interrupts.
+*
+* RETURNS: OK, or ERROR if the tick rate is invalid or the timer cannot be set.
+*
+* SEE ALSO: sysClkEnable(), sysClkRateGet()
+*/
+
+STATUS sysClkRateSet
+    (
+    int ticksPerSecond	    /* number of clock interrupts per second */
+    )
+    {
+    BOOL running = FALSE;
+#ifdef _WRS_VX_SMP
+    BOOL spinTaken = FALSE;
+#endif /* WRS_VX_SMP */
+
+    if (ticksPerSecond < SYS_CLK_RATE_MIN || ticksPerSecond > SYS_CLK_RATE_MAX)
+	 return (ERROR);
+
+    TIMER_SPIN_LOCK_ISR_TAKE(&timerLock, spinTaken);
+
+    timerTicksPerSecond [SYS_CLK] = ticksPerSecond;
+
+    running = timerRunning [SYS_CLK];
+
+    TIMER_SPIN_LOCK_ISR_GIVE(&timerLock, spinTaken);
+
+    if (running)
+	{
+	sysClkDisable ();		
+	sysClkEnable ();		
+	}
+    return (OK);
+    }
+
+/*******************************************************************************
+*
+* sysClkRateGet - get the system clock rate
+*
+* This routine returns the interrupt rate of the system clock.
+*
+* RETURNS: The number of ticks per second of the system clock.
+*
+* SEE ALSO: sysClkEnable(), sysClkRateSet()
+*/
+
+int sysClkRateGet (void)
+    {
+#ifdef _WRS_VX_SMP
+    int ticksPerSec;
+    BOOL spinTaken = FALSE;
+
+    TIMER_SPIN_LOCK_ISR_TAKE(&timerLock,spinTaken);
+
+    ticksPerSec = timerTicksPerSecond[SYS_CLK];
+    TIMER_SPIN_LOCK_ISR_GIVE(&timerLock, spinTaken);
+
+    return (ticksPerSec);
+#else
+    return (timerTicksPerSecond [SYS_CLK]);
+#endif /* _WRS_VX_SMP */
+    }
+
+/*******************************************************************************
+*
+* sysAuxClkEnable - turn on auxiliary clock interrupts
+*
+* This routine enables auxiliary clock interrupts.
+*
+* RETURNS: N/A
+*
+* SEE ALSO: sysAuxClkConnect(), sysAuxClkDisable(), sysAuxClkRateSet()
+*/
+
+void sysAuxClkEnable (void)
+    {
+    unixTimerInit ();
+
+#ifdef _WRS_VX_SMP
+    SPIN_LOCK_ISR_TAKE(&timerLock);
+#endif /* _WRS_VX_SMP */
+    if (!timerRunning [AUX_CLK])
+    	{
+	vxsimHostTimerEnable (AUX_CLK,  timerTicksPerSecond [AUX_CLK]);
+	timerRunning [AUX_CLK] = TRUE;
+	}
+#ifdef _WRS_VX_SMP
+    SPIN_LOCK_ISR_GIVE (&timerLock);
+#endif /* _WRS_VX_SMP */
+    }
+
+/*******************************************************************************
+*
+* sysClkDisable - turn off auxiliary clock interrupts
+*
+* This routine disables the auxiliary clock interrupts.
+*
+* RETURNS: N/A
+*
+* SEE ALSO: sysAuxClkEnable()
+*/
+
+void sysAuxClkDisable (void)
+    {
+#ifdef _WRS_VX_SMP
+    BOOL spinTaken = FALSE;
+#endif /* _WRS_VX_SMP */
+
+    TIMER_SPIN_LOCK_ISR_TAKE(&timerLock, spinTaken);
+
+    if (timerRunning [AUX_CLK])
+    	{
+	vxsimHostTimerDisable (AUX_CLK);
+	timerRunning [AUX_CLK] = FALSE;
+	}
+
+    TIMER_SPIN_LOCK_ISR_GIVE(&timerLock, spinTaken);
+    }
+
+/*******************************************************************************
+*
+* sysAuxClkRateGet - get the auxiliary clock rate
+*
+* This routine returns the interrupt rate of the auxiliary clock.
+*
+* RETURNS: The number of ticks per second of the auxiliary clock.
+*
+* SEE ALSO: sysAuxClkRateSet()
+*/
+
+int sysAuxClkRateGet (void)
+    {
+#ifdef _WRS_VX_SMP
+    int ticksPerSec;
+    BOOL spinTaken = FALSE;
+
+    TIMER_SPIN_LOCK_ISR_TAKE(&timerLock, spinTaken);
+    ticksPerSec = timerTicksPerSecond[AUX_CLK];
+    TIMER_SPIN_LOCK_ISR_GIVE(&timerLock, spinTaken);
+
+    return (ticksPerSec);
+#else
+    return (timerTicksPerSecond [AUX_CLK]);
+#endif /* _WRS_VX_SMP */
+    }
+
+/*******************************************************************************
+*
+* sysAuxClkRateSet - set the auxiliary clock rate
+*
+* This routine sets the interrupt rate of the auxiliary clock.
+* It does not enable auxiliary clock interrupts.
+*
+* RETURNS: OK, or ERROR if the tick rate is invalid or the timer cannot be set.
+*
+* SEE ALSO: sysAuxClkEnable(), sysAuxClkRateGet()
+*/
+
+STATUS sysAuxClkRateSet
+    (
+    int ticksPerSecond	    /* number of clock interrupts per second */
+    )
+    {
+    BOOL running = FALSE;
+#ifdef _WRS_VX_SMP
+    BOOL spinTaken = FALSE;
+#endif /* _WRS_VX_SMP */
+
+    if (ticksPerSecond < AUX_CLK_RATE_MIN || ticksPerSecond > AUX_CLK_RATE_MAX)
+    	return (ERROR);
+
+    TIMER_SPIN_LOCK_ISR_TAKE(&timerLock, spinTaken);
+
+    timerTicksPerSecond [AUX_CLK] = ticksPerSecond;
+
+    running =  timerRunning [AUX_CLK];
+
+    TIMER_SPIN_LOCK_ISR_GIVE(&timerLock, spinTaken);
+
+     if (running)
+	{
+	sysAuxClkDisable ();		
+	sysAuxClkEnable ();		
+	}
+    return (OK);
+    }
+
+/*******************************************************************************
+*
+* sysAuxClkConnect - connect a routine to the auxiliary clock interrupt
+*
+* This routine specifies the interrupt service routine to be called at each
+* auxiliary clock interrupt.  
+*
+* RETURN: OK, always.
+*
+* SEE ALSO: intConnect(), usrClock(), sysClkEnable()
+*/
+
+STATUS sysAuxClkConnect
+    (
+    FUNCPTR routine,	/* routine called at each auxiliary clock interrupt */
+    int arg		/* argument with which to call routine 		    */
+    )
+    {
+#ifdef _WRS_VX_SMP
+    BOOL spinTaken = FALSE;
+
+    TIMER_SPIN_LOCK_ISR_TAKE(&timerLock, spinTaken);
+#else
+    int key = intCpuLock ();
+#endif /* _WRS_VX_SMP */
+
+    if (!timerConnected [AUX_CLK])
+	{
+#if	AUX_VIRTUAL_TIME
+        (void)intConnect ((VOIDFUNCPTR*)IV_CLOCK3, sysAuxClkInt, 0); /* PROF */
+#endif	/* AUX_VIRTUAL_TIME */
+	timerConnected [AUX_CLK] = TRUE;
+	}
+
+    timerRoutine [AUX_CLK] = (CLK_FUNCPTR)routine;    
+    timerArg [AUX_CLK] = arg;
+
+#ifdef _WRS_VX_SMP
+    TIMER_SPIN_LOCK_ISR_GIVE(&timerLock, spinTaken);
+#else
+    intUnlock (key);
+#endif /* _WRS_VX_SMP */
+
+    return (OK);
+    }
+
+/***************************************************************************
+*
+* sysAuxClkInt - handle auxiliary clock interrupts
+*
+* This routines handles auxiliary clock interrupts
+*
+* RETURN: N/A
+*/
+
+LOCAL void sysAuxClkInt (void)
+    {
+#ifdef _WRS_VX_SMP 
+    CLK_FUNCPTR	auxClkRtn;
+    int		auxClkArg;
+
+    SPIN_LOCK_ISR_TAKE(&timerLock);
+    auxClkRtn = timerRoutine[AUX_CLK];
+    auxClkArg = timerArg[AUX_CLK];
+    SPIN_LOCK_ISR_GIVE(&timerLock);
+
+    if (auxClkRtn != NULL)
+        (*auxClkRtn) (auxClkArg);
+#else
+    if (timerRoutine[AUX_CLK] != NULL)
+    	(*timerRoutine[AUX_CLK]) (timerArg[AUX_CLK]);
+#endif /* _WRS_VX_SMP */
+    }
+
+#ifdef  INCLUDE_TIMESTAMP
+/*******************************************************************************
+*
+* sysTimestampInt - timestamp timer interrupt handler
+*
+* This rountine handles the timestamp timer interrupt.  A user routine is
+* called, if one was connected by sysTimestampConnect().
+*
+* RETURNS: N/A
+*
+* SEE ALSO: sysTimestampConnect()
+*/
+
+LOCAL void sysTimestampInt (void)
+    {
+#ifdef _WRS_VX_SMP
+    CLK_FUNCPTR	timestampRtn;
+    int		timestampArg;
+
+    SPIN_LOCK_ISR_TAKE(&timerLock);
+    timestampRtn = (CLK_FUNCPTR)sysTimestampRoutine;
+    timestampArg = sysTimestampArg;
+    SPIN_LOCK_ISR_GIVE(&timerLock);
+
+    if (timestampRtn != NULL)
+    	(*timestampRtn) (timestampArg);
+#else
+    if (sysTimestampRoutine != NULL)    /* call user connected routine */
+        (*sysTimestampRoutine) (sysTimestampArg);
+#endif /* _WRS_VX_SMP */
+    }
+
+/*******************************************************************************
+*
+* sysTimestampConnect - connect a user routine to the timestamp timer interrupt
+*
+* This routine specifies the user interrupt routine to be called at each
+* time the timestamp counter rolls over.
+*
+* RETURNS: OK always.
+*/
+
+STATUS sysTimestampConnect
+    (
+    FUNCPTR routine,    /* routine called at each timestamp timer rollover */
+    int arg             /* argument with which to call routine             */
+    )
+    {
+#ifdef _WRS_VX_SMP
+    BOOL spinTaken = FALSE;
+
+    TIMER_SPIN_LOCK_ISR_TAKE(&timerLock, spinTaken);
+#else
+    int key = intCpuLock ();
+#endif /* _WRS_VX_SMP */
+
+    sysTimestampRoutine = routine;
+    sysTimestampArg = arg;
+
+#ifdef _WRS_VX_SMP
+    TIMER_SPIN_LOCK_ISR_GIVE (&timerLock, spinTaken);
+#else
+     intCpuUnlock (key);
+#endif /* _WRS_VX_SMP */
+    return (OK);
+    }
+
+/*******************************************************************************
+*
+* sysTimestampEnable - initialize and enable the timestamp timer
+*
+* If the timer is not aleady enabled, this routine performs all the necessary
+* initialization. 
+*
+* RETURNS: OK, or ERROR if timestamp timer not available on the host
+*/
+
+STATUS sysTimestampEnable (void)
+    {
+    STATUS status = OK;
+#ifdef _WRS_VX_SMP
+    BOOL spinTaken = FALSE;
+
+    TIMER_SPIN_LOCK_ISR_TAKE(&timerLock, spinTaken);
+#endif /* _WRS_VX_SMP */
+
+    if (!sysTimestampRunning)
+	{
+	/* initialize timastamp driver global variables */
+
+	tsPrevValue = 0;		/* previous timer timestamp value */
+	tsRolloverNumber = 0;	/* number of rollover */
+
+	if (vxsimHostTimerTimestampEnable (0) == OK)
+	    {
+	    sysTimestampRunning = TRUE;
+	    }
+	else
+	    status = ERROR;
+	}
+
+    TIMER_SPIN_LOCK_ISR_GIVE(&timerLock, spinTaken);
+    return (status);
+    }
+
+/*******************************************************************************
+*
+* sysTimestampDisable - disable the timestamp timer
+*
+* This routine disables the timestamp timer.
+*
+* RETURNS: OK or ERROR if the timestamp timer could not be disabled.
+*
+* SEE ALSO: sysTimestampEnable()
+*/
+
+STATUS sysTimestampDisable (void)
+    {
+    STATUS status = OK;
+#ifdef _WRS_VX_SMP
+    BOOL spinTaken = FALSE;
+#endif /* _WRS_VX_SMP */
+
+    TIMER_SPIN_LOCK_ISR_TAKE(&timerLock, spinTaken);
+
+    if (sysTimestampRunning)
+    	{
+	if (vxsimHostTimerTimestampDisable () == OK)
+	    {
+	    sysTimestampRunning = FALSE;
+	    }
+	else
+	    status = ERROR;
+	}
+    TIMER_SPIN_LOCK_ISR_GIVE(&timerLock, spinTaken);
+    return (status);
+    }
+
+/*******************************************************************************
+*
+* sysTimestampPeriod - get the period of a timestamp timer 
+*
+* This routine gets the period of the timestamp timer, in ticks.  The
+* period, or terminal count, is the number of ticks to which the timestamp
+* timer counts before rolling over.
+*
+* RETURNS: The period of the timestamp timer in counter ticks.
+*/
+
+UINT32 sysTimestampPeriod (void)
+    {
+    /* On VxSim, timestamp timer value is a 32 bit integer */
+
+    return (0xFFFFFFFF);
+    }
+
+/*******************************************************************************
+*
+* sysTimestampFreq - get timestamp timer clock frequency
+*
+* This routine gets the frequency of the timer clock, in ticks per 
+* second.  The rate of the timestamp timer is set explicitly by the 
+* hardware and typically cannot be altered.
+*
+* RETURNS: The timestamp timer clock frequency, in ticks per second.
+*/
+
+UINT32 sysTimestampFreq (void)
+    {
+    return (vxsimHostTimerTimestampFreqGet ());
+    }
+
+/*******************************************************************************
+*
+* sysTimestamp - get a timestamp timer tick count
+*
+* This routine returns the current value of the timestamp timer tick counter.
+* The tick count can be converted to seconds by dividing it by the return of
+* sysTimestampFreq().
+*
+* This routine should be called with interrupts locked.  If interrupts are
+* not locked, sysTimestampLock() should be used instead.
+*
+* RETURNS: The current timestamp timer tick count.
+*
+* SEE ALSO: sysTimestampFreq(), sysTimestampLock()
+*/
+
+UINT32 sysTimestamp (void)
+    {
+    UINT32	tsValue;
+
+    tsValue = vxsimHostTimerTimestampGet ();
+
+    /*
+     * after each rollover, a +1 increment must be added to the timestamp value.
+     * This is due to sysTimestampPeriod function which return a 32 bit value.
+     * The real period value is 0x10000000000000000 and not 0xffffffffffffffff.
+     */
+
+    return (tsValue + tsRolloverNumber);
+    }
+
+/*******************************************************************************
+*
+* sysTimestampLock - lock interrupts and get the timestamp timer tick count
+*
+* This routine locks interrupts when the tick counter must be stopped 
+* in order to read it or when two independent counters must be read.  
+* It then returns the current value of the timestamp timer tick
+* counter.
+* 
+* The tick count can be converted to seconds by dividing it by the return of
+* sysTimestampFreq().
+*
+* If interrupts are already locked, sysTimestamp() should be
+* used instead.
+*
+* RETURNS: The current timestamp timer tick count.
+*
+* SEE ALSO: sysTimestampFreq(), sysTimestamp()
+*/
+
+UINT32 sysTimestampLock (void)
+    {
+    return (sysTimestamp ());
+    }
+#endif  /* INCLUDE_TIMESTAMP */

@@ -1,0 +1,7 @@
+#include<vxworks.h>
+#include<taskLib.h>
+int hello_task1;
+int hello()
+{
+hello
+}

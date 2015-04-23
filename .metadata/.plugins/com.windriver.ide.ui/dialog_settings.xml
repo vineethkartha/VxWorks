@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="WRProjectWizard">
+		<item key="BSPVTSOptionsDialog.BSPVTS_SUITE" value="bspvts"/>
+		<item key="WRSetupBSPPage.SELECTED_FORMAT" value="Hex"/>
+		<item key="BIPSetupScreen.SELECTED_BSP" value="integrator920t"/>
+		<item key="BIPSetupScreen.SELECTED_TC" value="gnu"/>
+		<item key="WRTargetOSWizardPage.STORE_SELECTED_PLATFORM" value="vxworks-6.6"/>
+		<item key="BSPVTSOptionsDialog.BSPVTS_HOST" value=""/>
+		<item key="BSPVTSOptionsDialog.BSPVTS_HTMLDIR" value="results"/>
+		<item key="BSPVTSOptionsDialog.BSPVTS_USER" value=""/>
+		<item key="BSPVTSOptionsDialog.BSPVTS_HOSTIP" value=""/>
+		<item key="WRSetupBSPPage.SELECTED_STYLE" value="Compressed (default)"/>
+		<item key="BSPVTSOptionsDialog.BSPVTS_PASSWORD" value=""/>
+		<item key="WRGenericProjectWizardBuildTypePage.STORE_SELECTED_BUILD_TYPE" value="System Image"/>
+		<item key="BSPVTSOptionsDialog.BSPVTS_USE_BARCODE" value="false"/>
+		<item key="BSPVTSOptionsDialog.BSPVTS_ENABLED" value="false"/>
+		<item key="WRGenericProjectWizardBuildTypePage.STORE_SELECTED_PLATFORM" value="vxworks-6.6"/>
+		<list key="WRWizardNewProjectCreationPage.STORE_PROJECT_LOCATION">
+			<item value="/home/kartha/programs/VxWorks/lpc2148"/>
+			<item value="/home/kartha/programs/VxWorks/LPC2148"/>
+			<item value="/home/kartha/programs/VxWorks/testing"/>
+			<item value="/home/kartha/programs/VxWorks/TimerDrivers"/>
+			<item value="/home/kartha/programs/VxWorks/New_kernel"/>
+		</list>
+	</section>
+</section>

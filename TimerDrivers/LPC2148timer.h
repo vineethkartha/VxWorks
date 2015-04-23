@@ -1,0 +1,41 @@
+#ifndef __LPC2148timer_H
+#define __LPC2148timer_H
+
+/* Timer 0 */
+#define T0IR            (*((volatile unsigned long *) 0xE0004000))
+#define T0TCR           (*((volatile unsigned long *) 0xE0004004))
+#define T0TC            (*((volatile unsigned long *) 0xE0004008))
+#define T0PR            (*((volatile unsigned long *) 0xE000400C))
+#define T0PC            (*((volatile unsigned long *) 0xE0004010))
+#define T0MCR           (*((volatile unsigned long *) 0xE0004014))
+#define T0MR0           (*((volatile unsigned long *) 0xE0004018))
+#define T0MR1           (*((volatile unsigned long *) 0xE000401C))
+#define T0MR2           (*((volatile unsigned long *) 0xE0004020))
+#define T0MR3           (*((volatile unsigned long *) 0xE0004024))
+#define T0CCR           (*((volatile unsigned long *) 0xE0004028))
+#define T0CR0           (*((volatile unsigned long *) 0xE000402C))
+#define T0CR1           (*((volatile unsigned long *) 0xE0004030))
+#define T0CR2           (*((volatile unsigned long *) 0xE0004034))
+#define T0CR3           (*((volatile unsigned long *) 0xE0004038))
+#define T0EMR           (*((volatile unsigned long *) 0xE000403C))
+#define T0CTCR          (*((volatile unsigned long *) 0xE0004070))
+
+/* Timer 1 */
+#define T1IR            (*((volatile unsigned long *) 0xE0008000))
+#define T1TCR           (*((volatile unsigned long *) 0xE0008004))
+#define T1TC            (*((volatile unsigned long *) 0xE0008008))
+#define T1PR            (*((volatile unsigned long *) 0xE000800C))
+#define T1PC            (*((volatile unsigned long *) 0xE0008010))
+#define T1MCR           (*((volatile unsigned long *) 0xE0008014))
+#define T1MR0           (*((volatile unsigned long *) 0xE0008018))
+#define T1MR1           (*((volatile unsigned long *) 0xE000801C))
+#define T1MR2           (*((volatile unsigned long *) 0xE0008020))
+#define T1MR3           (*((volatile unsigned long *) 0xE0008024))
+#define T1CCR           (*((volatile unsigned long *) 0xE0008028))
+#define T1CR0           (*((volatile unsigned long *) 0xE000802C))
+#define T1CR1           (*((volatile unsigned long *) 0xE0008030))
+#define T1CR2           (*((volatile unsigned long *) 0xE0008034))
+#define T1CR3           (*((volatile unsigned long *) 0xE0008038))
+#define T1EMR           (*((volatile unsigned long *) 0xE000803C))
+#define T1CTCR          (*((volatile unsigned long *) 0xE0008070))
+#endif

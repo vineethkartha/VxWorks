@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>New_kernel</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>com.windriver.ide.osconfig.core.wrbuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>com.windriver.ide.osconfig.core.wrnature</nature>
+		<nature>com.windriver.ide.core.wrcorenature</nature>
+		<nature>org.eclipse.cdt.core.cnature</nature>
+		<nature>org.eclipse.cdt.core.ccnature</nature>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>linux</name>
+			<type>2</type>
+			<locationURI>WIND_HOME/vxworks-6.6/target/config/linux</locationURI>
+		</link>
+	</linkedResources>
+</projectDescription>

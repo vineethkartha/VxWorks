@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="WRVxWorksKCE">
+		<item key="ComponentsPage.STORE_FILTER_UNAVAILABLE" value="false"/>
+		<list key="ComponentsPage.STORE_EXPANDED_ELEMENTS">
+			<item value="INCLUDE_TIMER_SYS"/>
+			<item value="FOLDER_CLOCK"/>
+			<item value="FOLDER_USB_HOST"/>
+			<item value="FOLDER_BUS"/>
+			<item value="FOLDER_PERIPHERALS"/>
+			<item value="FOLDER_HARDWARE"/>
+			<item value="FOLDER_HWIF"/>
+			<item value="FOLDER_BUSES"/>
+		</list>
+		<list key="ComponentsPage.STORE_COLUMN_WIDTH">
+			<item value="300"/>
+			<item value="262"/>
+			<item value="50"/>
+			<item value="352"/>
+		</list>
+	</section>
+</section>

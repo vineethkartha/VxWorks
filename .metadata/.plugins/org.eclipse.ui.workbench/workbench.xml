@@ -1,0 +1,743 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workbench version="2.0">
+<workbenchAdvisor/>
+<window height="690" maximized="true" width="1215" x="39" y="81">
+<fastViewData fastViewLocation="1024"/>
+<perspectiveBar>
+<itemSize x="160"/>
+</perspectiveBar>
+<coolbarLayout locked="0">
+<coolItem id="group.file" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.ui.workbench.file" itemType="typeToolBarContribution" x="152" y="36"/>
+<coolItem id="additions" itemType="typeGroupMarker"/>
+<coolItem id="com.windriver.analysis.windview.actionSet" itemType="typeToolBarContribution" x="78" y="36"/>
+<coolItem id="com.windriver.ide.target.ui.actionset.global" itemType="typeToolBarContribution" x="48" y="36"/>
+<coolItem id="org.eclipse.debug.ui.launchActionSet" itemType="typeToolBarContribution" x="132" y="36"/>
+<coolItem id="org.eclipse.search.searchActionSet" itemType="typeToolBarContribution" x="168" y="36"/>
+<coolItem id="org.eclipse.ui.edit.text.actionSet.presentation" itemType="typeToolBarContribution" x="108" y="36"/>
+<coolItem id="viPlugin.actionSet" itemType="typeToolBarContribution" x="48" y="36"/>
+<coolItem id="group.nav" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.ui.workbench.navigate" itemType="typeToolBarContribution" x="200" y="36"/>
+<coolItem id="group.editor" itemType="typeGroupMarker"/>
+<coolItem id="com.windriver.windview.plugins.vxworks.config.VxWorksConfigEditor" itemType="typePlaceholder" x="228" y="36"/>
+<coolItem id="org.eclipse.ui.DefaultTextEditor" itemType="typePlaceholder" x="-1" y="-1"/>
+<coolItem id="com.windriver.ide.osconfig.ui.editor.WRVxWorksKCE" itemType="typeToolBarContribution" x="56" y="36"/>
+<coolItem id="org.eclipse.cdt.ui.editor.CEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
+<coolItem id="group.help" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.ui.workbench.help" itemType="typeToolBarContribution" x="-1" y="-1"/>
+</coolbarLayout>
+<page focus="true" label="Workspace - Device Debug">
+<editors>
+<editorArea activeWorkbook="DefaultEditorWorkbook">
+<info part="DefaultEditorWorkbook">
+<folder appearance="1" expanded="2">
+<presentation id="org.eclipse.ui.internal.presentations.r33.WorkbenchPresentationFactory_33">
+<part id="0"/>
+<part id="1"/>
+<part id="2"/>
+<part id="3"/>
+</presentation>
+</folder>
+</info>
+</editorArea>
+<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="timer1.c" partName="timer1.c" path="/home/kartha/programs/VxWorks/TimerDrivers/timer1.c" title="timer1.c" tooltip="TimerDrivers/timer1.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/TimerDrivers/timer1.c"/>
+<editorState selectionHPixel="0" selectionLength="0" selectionOffset="1823"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="timer2.c" partName="timer2.c" path="/home/kartha/programs/VxWorks/TimerDrivers/timer2.c" title="timer2.c" tooltip="TimerDrivers/timer2.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/TimerDrivers/timer2.c"/>
+<editorState selectionHPixel="0" selectionLength="0" selectionOffset="494"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="LPC2148timer.h" partName="LPC2148timer.h" path="/home/kartha/programs/VxWorks/TimerDrivers/LPC2148timer.h" title="LPC2148timer.h" tooltip="TimerDrivers/LPC2148timer.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/TimerDrivers/LPC2148timer.h"/>
+<editorState selectionHPixel="0" selectionLength="0" selectionOffset="2364"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="vxsimHostLibP.h" partName="vxsimHostLibP.h" title="vxsimHostLibP.h" tooltip="/home/kartha/WindRiver/vxworks-6.6/target/h/private/vxsimHostLibP.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" path="/home/kartha/WindRiver/vxworks-6.6/target/h/private/vxsimHostLibP.h" project="TimerDrivers"/>
+<editorState selectionHPixel="0" selectionLength="0" selectionOffset="0"/>
+</editor>
+</editors>
+<views>
+<view id="com.windriver.ide.debug.ui.osobjects.KOView" partName="Kernel Objects">
+<viewState/>
+</view>
+<view id="org.eclipse.debug.ui.ExpressionView" partName="Expressions"/>
+<view id="org.eclipse.ui.views.TaskList" partName="Tasks">
+<viewState columnWidth0="43" columnWidth1="19" columnWidth2="253" columnWidth3="78" columnWidth4="153" columnWidth5="465" columnWidth6="0" horizontalPosition="0" verticalPosition="0">
+<columnOrder columnOrderIndex="0"/>
+<columnOrder columnOrderIndex="1"/>
+<columnOrder columnOrderIndex="2"/>
+<columnOrder columnOrderIndex="3"/>
+<columnOrder columnOrderIndex="4"/>
+<columnOrder columnOrderIndex="5"/>
+<columnOrder columnOrderIndex="6"/>
+</viewState>
+</view>
+<view id="org.eclipse.debug.ui.VariableView" partName="Variables">
+<viewState/>
+</view>
+<view id="com.windriver.ide.ui.build.WRBuildConsoleView" partName="Build Console">
+<viewState>
+<buildArgsViewState traceBuildRun="true">
+<buildArgs selection=""/>
+</buildArgsViewState>
+</viewState>
+</view>
+<view id="org.eclipse.debug.ui.DebugView" partName="Debug">
+<viewState/>
+</view>
+<view id="org.eclipse.ui.views.PropertySheet" partName="Properties">
+<viewState/>
+</view>
+<view id="org.eclipse.debug.ui.MemoryView" partName="Memory"/>
+<view id="org.eclipse.debug.ui.RegisterView" partName="Registers"/>
+<view id="com.windriver.ide.launch.ui.DebugSymbolBrowserView" partName="Debug Symbol Browser"/>
+<view id="org.eclipse.pde.runtime.LogView" partName="Error Log">
+<viewState activate="true" allSessions="true" column2="496" column3="150" column4="548" error="true" info="true" limit="50" orderType="2" orderValue="-1" useLimit="true" warning="true"/>
+</view>
+<view id="org.eclipse.search.ui.views.SearchView" partName="Search">
+<viewState isPinned="false">
+<view IMemento.internal.id="org.eclipse.cdt.ui.pdomSearchViewPage" org.eclipse.search.lastActivation="1" org.eclipse.search.resultpage.layout="2"/>
+<view IMemento.internal.id="" org.eclipse.search.lastActivation="0"/>
+</viewState>
+</view>
+<view id="biz.junginger.newsfeed.eclipse.FeedView" partName="Feeds">
+<viewState/>
+</view>
+<view id="com.windriver.ide.ui.project.WRFileView" partName="File Navigator"/>
+<view id="org.eclipse.rse.ui.view.systemView" partName="Remote Systems">
+<viewState horizontalPosition="0" linkWithEditor="f" release="2.0.0" showFilterPools="f" verticalPosition="83">
+<expanded>
+<element path="Conn///nirvana.Local"/>
+</expanded>
+<selection>
+<element path="Conn///nirvana.vxsim0"/>
+</selection>
+</viewState>
+</view>
+<view id="org.eclipse.ui.console.ConsoleView" partName="Console">
+<viewState/>
+</view>
+<view id="org.eclipse.rse.ui.view.systemTableView" partName="Remote System Details">
+<viewState columnWidths="" tableViewConnectionID="vxsim2" tableViewProfileID="nirvana"/>
+</view>
+<view id="org.eclipse.tm.terminal.view.TerminalView" partName="Terminal 1">
+<viewState HasCommandInputField="false" Title="Terminal 1" _keys_="HasCommandInputField,Title"/>
+</view>
+<view id="org.eclipse.debug.ui.BreakpointView" partName="Breakpoints">
+<viewState>
+<isTrackingSelection value="false"/>
+</viewState>
+</view>
+<view id="org.eclipse.ui.navigator.ProjectExplorer" partName="Project Explorer">
+<viewState CommonNavigator.LINKING_ENABLED="0" CommonNavigator.LINKING_ENABLED.delayed="0" org.eclipse.cdt.ui.cview.groupincludes="true" org.eclipse.cdt.ui.editor.CUChildren="false" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0"/>
+</view>
+<view id="org.eclipse.rse.shells.ui.view.commandsView" partName="Remote Shell">
+<viewState/>
+</view>
+<view id="org.eclipse.ui.views.ProblemView" partName="Problems">
+<viewState columnWidth0="250" columnWidth1="75" columnWidth2="150" columnWidth3="523" columnWidth4="0" horizontalPosition="0" verticalPosition="0">
+<columnOrder columnOrderIndex="0"/>
+<columnOrder columnOrderIndex="1"/>
+<columnOrder columnOrderIndex="2"/>
+<columnOrder columnOrderIndex="3"/>
+<columnOrder columnOrderIndex="4"/>
+</viewState>
+</view>
+</views>
+<perspectives activePart="org.eclipse.cdt.ui.editor.CEditor" activePerspective="DFE">
+<perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
+<descriptor class="com.windriver.ide.ui.ADEPerspectiveFactory" id="com.windriver.ide.perspective.ADE" label="Application Development"/>
+<alwaysOnActionSet id="org.eclipse.ui.externaltools.ExternalToolsSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.cheatsheets.actionSet"/>
+<alwaysOnActionSet id="org.eclipse.search.searchActionSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.annotationNavigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.navigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.convertLineDelimitersTo"/>
+<alwaysOnActionSet id="org.eclipse.ui.actionSet.keyBindings"/>
+<alwaysOnActionSet id="org.eclipse.ui.WorkingSetActionSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.actionSet.openFiles"/>
+<alwaysOnActionSet id="org.eclipse.update.ui.softwareUpdates"/>
+<alwaysOnActionSet id="viPlugin.actionSet"/>
+<alwaysOnActionSet id="org.eclipse.rse.core.search.searchActionSet"/>
+<alwaysOnActionSet id="com.windriver.ide.search.ui.actionSet"/>
+<alwaysOnActionSet id="com.windriver.ide.devcenter.internal.WROpenDevCenterActionSet"/>
+<alwaysOnActionSet id="com.windriver.ide.ui.internal.actions.WROpenDeveloperCenter"/>
+<alwaysOnActionSet id="com.windriver.ide.ui.internal.actions.WROpenOnlineSupport"/>
+<alwaysOnActionSet id="com.windriver.ide.ui.SetEmacsKeys"/>
+<alwaysOnActionSet id="com.windriver.ide.debug.ui.osobjects.actionSets"/>
+<alwaysOnActionSet id="com.windriver.ide.launch.WRLaunchActionSet"/>
+<alwaysOnActionSet id="org.eclipse.cdt.ui.CodingActionSet"/>
+<alwaysOnActionSet id="com.windriver.ide.staticanalysis.ui.NavigationActionSet"/>
+<alwaysOnActionSet id="org.eclipse.cdt.ui.OpenActionSet"/>
+<alwaysOnActionSet id="com.windriver.ide.target.ui.actionset.global"/>
+<alwaysOnActionSet id="com.windriver.ide.target.ui.rse.actionset.newconnection"/>
+<alwaysOnActionSet id="org.eclipse.ui.NavigateActionSet"/>
+<alwaysOnActionSet id="org.eclipse.debug.ui.launchActionSet"/>
+<alwaysOnActionSet id="com.windriver.ide.ui.help.feedback"/>
+<alwaysOnActionSet id="com.windriver.ide.ui.internal.actions.register2eclipse"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.presentation"/>
+<alwaysOnActionSet id="com.windriver.analysis.windview.actionSet"/>
+<alwaysOnActionSet id="com.windriver.analysis.eventreceive.actionSet"/>
+<show_view_action id="com.windriver.ide.debug.ui.osobjects.KOView"/>
+<show_view_action id="org.eclipse.rse.ui.view.systemView"/>
+<show_view_action id="org.eclipse.ui.navigator.ProjectExplorer"/>
+<show_view_action id="com.windriver.ide.ui.project.WRProjectView"/>
+<show_view_action id="com.windriver.ide.ui.project.WRFileView"/>
+<show_view_action id="com.windriver.ide.launch.ui.DebugSymbolBrowserView"/>
+<show_view_action id="org.eclipse.ui.views.ProgressView"/>
+<show_view_action id="org.eclipse.pde.runtime.LogView"/>
+<show_view_action id="com.windriver.ide.ui.build.WRBuildConsoleView"/>
+<show_view_action id="org.eclipse.ui.views.ContentOutline"/>
+<show_view_action id="org.eclipse.ui.views.TaskList"/>
+<show_view_action id="org.eclipse.ui.views.ProblemView"/>
+<show_view_action id="org.eclipse.ui.views.BookmarkView"/>
+<show_view_action id="org.eclipse.ui.views.PropertySheet"/>
+<show_view_action id="org.eclipse.ui.console.ConsoleView"/>
+<show_view_action id="org.eclipse.tm.terminal.view.TerminalView"/>
+<show_view_action id="org.eclipse.cdt.ui.includeBrowser"/>
+<new_wizard_action id="com.windriver.ide.wizard.newComponent"/>
+<new_wizard_action id="com.windriver.ide.ui.build.wizards.WRBuildTargetWizard"/>
+<new_wizard_action id="com.windriver.ide.ocd.ui.jtageditor.wizard.new.file"/>
+<new_wizard_action id="com.windriver.ide.wrlinux.ui.wizards.WRLinuxApplicationProjectWizard"/>
+<new_wizard_action id="com.windriver.ide.wrlinux.ui.wizards.WRLinuxUserProjectWizard"/>
+<new_wizard_action id="com.windriver.ide.wrlinux.ui.wizards.WRLinuxPlatformProjectWizard"/>
+<new_wizard_action id="com.windriver.ide.wrlinux.ui.wizards.WRLinuxKernelModuleProjectWizard"/>
+<new_wizard_action id="com.windriver.ide.wrlinux.rtcore.wizards.WRLinuxRTCoreKernelAppProjectWizard"/>
+<new_wizard_action id="com.windriver.ide.wrlinux.rtcore.wizards.WRLinuxRTCoreKernelModuleProjectWizard"/>
+<new_wizard_action id="com.windriver.ide.wrlinux.rtcore.wizards.WRLinuxRTCoreApplicationProjectWizard"/>
+<new_wizard_action id="com.windriver.ide.ui.project.wizards.WREmbeddedLinuxApplicationProjectWizard"/>
+<new_wizard_action id="com.windriver.ide.ui.project.wizards.WREmbeddedLinuxKernelProjectWizard"/>
+<new_wizard_action id="com.windriver.ide.ui.project.wizards.WRStandaloneApplicationProjectWizard"/>
+<new_wizard_action id="com.windriver.ide.osconfig.ui.screen.WRBSPProjectWizard"/>
+<new_wizard_action id="com.windriver.ide.ui.project.wizards.WRDownloadAbleModuleProjectWizard"/>
+<new_wizard_action id="com.windriver.ide.vxFS.wizards.WRFSWizard"/>
+<new_wizard_action id="com.windriver.ide.osconfig.ui.screen.BIPWizard"/>
+<new_wizard_action id="com.windriver.ide.ui.project.wizards.WRRealTimeProcessProjectWizard"/>
+<new_wizard_action id="com.windriver.ide.ui.project.wizards.WRSharedLibProjectWizard"/>
+<new_wizard_action id="com.windriver.ide.ui.project.wizards.WRVxWorks55ApplicationProjectWizard"/>
+<new_wizard_action id="com.windriver.ide.vxworks653.ui.wizards.WRVxWorks653IntegrationProjectWizard"/>
+<new_wizard_action id="com.windriver.ide.vxworks653.ui.wizards.WRVxWorks653CRProjectWizard"/>
+<new_wizard_action id="com.windriver.ide.vxworks653.ui.wizards.WRVxWorks653MOSProjectWizard"/>
+<new_wizard_action id="com.windriver.ide.vxworks653.ui.wizards.WRVxWorks653ACEProjectWizard"/>
+<new_wizard_action id="com.windriver.ide.vxworks653.ui.wizards.WRVxWorks653POSProjectWizard"/>
+<new_wizard_action id="com.windriver.ide.vxworks653.ui.wizards.WRVxWorks653ApplicationProjectWizard"/>
+<new_wizard_action id="com.windriver.ide.vxworks653.ui.wizards.WRVxWorks653SLProjectWizard"/>
+<new_wizard_action id="com.windriver.ide.vxworks653.ui.wizards.WRVxWorks653SDProjectWizard"/>
+<new_wizard_action id="com.windriver.ide.vxworks653.ui.wizards.WRVxWorks653UCRProjectWizard"/>
+<new_wizard_action id="com.windriver.ide.ui.project.wizards.WRVxWorks653PlatformProjectWizard"/>
+<new_wizard_action id="com.windriver.ide.ui.project.wizards.WRVxWorks653ApplicationProjectWizard"/>
+<new_wizard_action id="com.windriver.ide.ui.project.wizards.WRUserProjectWizard"/>
+<new_wizard_action id="com.windriver.ide.ui.project.wizards.WRNativeApplicationProjectWizard"/>
+<new_wizard_action id="org.eclipse.ui.wizards.new.folder"/>
+<new_wizard_action id="org.eclipse.ui.wizards.new.file"/>
+<new_wizard_action id="com.windriver.ide.ui.project.wizards.WRNewFileWizard"/>
+<perspective_action id="org.eclipse.rse.ui.view.SystemPerspective"/>
+<perspective_action id="com.windriver.ide.perspective.ADE"/>
+<perspective_action id="DFE"/>
+<perspective_action id="com.windriver.ide.perspective.OCD"/>
+<perspective_action id="com.windriver.scopetools.memscope.perspective.MemScopePerspective"/>
+<perspective_action id="com.windriver.scopetools.profilescope.perspective.ProfileScopePerspective"/>
+<view id="org.eclipse.rse.ui.view.systemView"/>
+<view id="com.windriver.ide.debug.ui.osobjects.KOView"/>
+<view id="org.eclipse.ui.navigator.ProjectExplorer"/>
+<view id="com.windriver.ide.ui.project.WRFileView"/>
+<view id="biz.junginger.newsfeed.eclipse.FeedView"/>
+<view id="org.eclipse.pde.runtime.LogView"/>
+<view id="org.eclipse.ui.views.TaskList"/>
+<view id="org.eclipse.ui.views.ProblemView"/>
+<view id="org.eclipse.ui.views.PropertySheet"/>
+<view id="com.windriver.ide.ui.build.WRBuildConsoleView"/>
+<view id="org.eclipse.ui.console.ConsoleView"/>
+<view id="org.eclipse.search.ui.views.SearchView"/>
+<view id="org.eclipse.rse.shells.ui.view.commandsView"/>
+<view id="org.eclipse.rse.ui.view.systemTableView"/>
+<fastViewBars/>
+<layout>&#x0A;<mainWindow>&#x0A;<info folder="true" part="left">&#x0A;<folder activePageID="org.eclipse.ui.navigator.ProjectExplorer" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.ui.navigator.ProjectExplorer" label="Project Explorer"/>
+<page content="com.windriver.ide.ui.project.WRFileView" label="File Navigator"/>
+<page content="com.windriver.ide.ui.project.WRProjectView" label="LabelNotFound"/>
+<page content="com.windriver.ide.launch.ui.DebugSymbolBrowserView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.internal.presentations.r33.WorkbenchPresentationFactory_33">&#x0A;<part id="0"/>
+<part id="1"/>
+</presentation>
+</folder>
+</info>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@199f9eb" ratio="0.75" ratioLeft="939" ratioRight="313" relationship="2" relative="left">&#x0A;<folder appearance="2" expanded="2">&#x0A;<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
+<page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
+<page content="org.eclipse.ui.cheatsheets.views.CheatSheetView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.internal.presentations.r33.WorkbenchPresentationFactory_33"/>
+</folder>
+</info>
+<info part="org.eclipse.ui.editorss" ratio="0.26996806" ratioLeft="338" ratioRight="914" relationship="2" relative="left"/>
+<info folder="true" part="bottom" ratio="0.6976351" ratioLeft="413" ratioRight="179" relationship="4" relative="org.eclipse.ui.editorss">&#x0A;<folder activePageID="com.windriver.ide.ui.build.WRBuildConsoleView" appearance="2" expanded="2">&#x0A;<page content="biz.junginger.newsfeed.eclipse.FeedView" label="Feeds"/>
+<page content="org.eclipse.pde.runtime.LogView" label="Error Log"/>
+<page content="org.eclipse.ui.views.TaskList" label="Tasks"/>
+<page content="org.eclipse.ui.views.ProblemView" label="Problems"/>
+<page content="org.eclipse.ui.views.PropertySheet" label="Properties"/>
+<page content="com.windriver.ide.ui.build.WRBuildConsoleView" label="Build Console"/>
+<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
+<page content="org.eclipse.search.ui.views.SearchView" label="Search"/>
+<page content="org.eclipse.rse.shells.ui.view.commandsView" label="Remote Shell"/>
+<page content="org.eclipse.rse.ui.view.systemTableView" label="Remote System Details"/>
+<presentation id="org.eclipse.ui.internal.presentations.r33.WorkbenchPresentationFactory_33">&#x0A;<part id="0"/>
+<part id="1"/>
+<part id="2"/>
+<part id="3"/>
+<part id="4"/>
+<part id="5"/>
+<part id="6"/>
+<part id="7"/>
+<part id="8"/>
+<part id="9"/>
+</presentation>
+</folder>
+</info>
+<info folder="true" part="right" ratio="0.7297593" ratioLeft="667" ratioRight="247" relationship="2" relative="org.eclipse.ui.editorss">&#x0A;<folder appearance="2" expanded="2">&#x0A;<page content="org.eclipse.ui.views.ContentOutline" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.internal.presentations.r33.WorkbenchPresentationFactory_33"/>
+</folder>
+</info>
+<info folder="true" part="leftbottom" ratio="0.47635135" ratioLeft="282" ratioRight="310" relationship="4" relative="left">&#x0A;<folder activePageID="org.eclipse.rse.ui.view.systemView" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.rse.ui.view.systemView" label="Remote Systems"/>
+<page content="com.windriver.ide.debug.ui.osobjects.KOView" label="Kernel Objects"/>
+<presentation id="org.eclipse.ui.internal.presentations.r33.WorkbenchPresentationFactory_33">&#x0A;<part id="0"/>
+<part id="1"/>
+</presentation>
+</folder>
+</info>
+</mainWindow>
+</layout>
+</perspective>
+<perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
+<descriptor class="com.windriver.rb.eclipse.fm.RiverBedPerspective" id="DFE" label="Device Debug"/>
+<alwaysOnActionSet id="org.eclipse.ui.externaltools.ExternalToolsSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.cheatsheets.actionSet"/>
+<alwaysOnActionSet id="org.eclipse.search.searchActionSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.annotationNavigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.navigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.convertLineDelimitersTo"/>
+<alwaysOnActionSet id="org.eclipse.ui.actionSet.keyBindings"/>
+<alwaysOnActionSet id="org.eclipse.ui.WorkingSetActionSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.actionSet.openFiles"/>
+<alwaysOnActionSet id="org.eclipse.update.ui.softwareUpdates"/>
+<alwaysOnActionSet id="viPlugin.actionSet"/>
+<alwaysOnActionSet id="org.eclipse.rse.core.search.searchActionSet"/>
+<alwaysOnActionSet id="com.windriver.ide.search.ui.actionSet"/>
+<alwaysOnActionSet id="com.windriver.ide.devcenter.internal.WROpenDevCenterActionSet"/>
+<alwaysOnActionSet id="com.windriver.ide.ui.internal.actions.WROpenDeveloperCenter"/>
+<alwaysOnActionSet id="com.windriver.ide.ui.internal.actions.WROpenOnlineSupport"/>
+<alwaysOnActionSet id="com.windriver.ide.ui.SetEmacsKeys"/>
+<alwaysOnActionSet id="com.windriver.ide.debug.ui.osobjects.actionSets"/>
+<alwaysOnActionSet id="org.eclipse.debug.ui.launchActionSet"/>
+<alwaysOnActionSet id="com.windriver.ide.debug.ui.debugActionSet"/>
+<alwaysOnActionSet id="com.windriver.ide.debug.ui.breakpointsActionSet"/>
+<alwaysOnActionSet id="com.windriver.ide.debug.ui.tracepointsActionSet"/>
+<alwaysOnActionSet id="org.eclipse.debug.ui.breakpointActionSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.NavigateActionSet"/>
+<alwaysOnActionSet id="com.windriver.ide.launch.WRLaunchActionSet"/>
+<alwaysOnActionSet id="org.eclipse.cdt.ui.CodingActionSet"/>
+<alwaysOnActionSet id="com.windriver.ide.staticanalysis.ui.NavigationActionSet"/>
+<alwaysOnActionSet id="org.eclipse.cdt.ui.OpenActionSet"/>
+<alwaysOnActionSet id="com.windriver.ide.target.ui.actionset.global"/>
+<alwaysOnActionSet id="com.windriver.ide.target.ui.rse.actionset.newconnection"/>
+<alwaysOnActionSet id="com.windriver.ide.ui.help.feedback"/>
+<alwaysOnActionSet id="com.windriver.ide.ui.internal.actions.register2eclipse"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.presentation"/>
+<alwaysOnActionSet id="com.windriver.analysis.windview.actionSet"/>
+<alwaysOnActionSet id="com.windriver.analysis.eventreceive.actionSet"/>
+<alwaysOnActionSet id="org.eclipse.debug.ui.debugActionSet"/>
+<show_view_action id="org.eclipse.debug.ui.DebugView"/>
+<show_view_action id="DFE.Threads"/>
+<show_view_action id="DFE.StackTrace"/>
+<show_view_action id="DFE.Globals"/>
+<show_view_action id="org.eclipse.debug.ui.VariableView"/>
+<show_view_action id="org.eclipse.debug.ui.RegisterView"/>
+<show_view_action id="org.eclipse.debug.ui.MemoryView"/>
+<show_view_action id="DFE.Functions"/>
+<show_view_action id="DFE.CompilationUnits"/>
+<show_view_action id="org.eclipse.debug.ui.ExpressionView"/>
+<show_view_action id="org.eclipse.debug.ui.BreakpointView"/>
+<show_view_action id="DFE.Memory"/>
+<show_view_action id="com.windriver.ide.debug.ui.osobjects.KOView"/>
+<show_view_action id="org.eclipse.ui.navigator.ProjectExplorer"/>
+<show_view_action id="com.windriver.ide.ui.project.WRProjectView"/>
+<show_view_action id="com.windriver.ide.ui.project.WRFileView"/>
+<show_view_action id="com.windriver.ide.launch.ui.DebugSymbolBrowserView"/>
+<show_view_action id="org.eclipse.ui.views.ProgressView"/>
+<show_view_action id="org.eclipse.pde.runtime.LogView"/>
+<show_view_action id="com.windriver.ide.ui.build.WRBuildConsoleView"/>
+<show_view_action id="org.eclipse.ui.views.ContentOutline"/>
+<show_view_action id="org.eclipse.ui.views.TaskList"/>
+<show_view_action id="org.eclipse.ui.views.ProblemView"/>
+<show_view_action id="org.eclipse.ui.views.BookmarkView"/>
+<show_view_action id="org.eclipse.ui.views.PropertySheet"/>
+<show_view_action id="org.eclipse.rse.ui.view.systemView"/>
+<show_view_action id="org.eclipse.ui.console.ConsoleView"/>
+<show_view_action id="org.eclipse.tm.terminal.view.TerminalView"/>
+<show_view_action id="org.eclipse.cdt.ui.includeBrowser"/>
+<new_wizard_action id="com.windriver.ide.wizard.newComponent"/>
+<new_wizard_action id="com.windriver.ide.ui.build.wizards.WRBuildTargetWizard"/>
+<new_wizard_action id="com.windriver.ide.ocd.ui.jtageditor.wizard.new.file"/>
+<new_wizard_action id="com.windriver.ide.wrlinux.ui.wizards.WRLinuxApplicationProjectWizard"/>
+<new_wizard_action id="com.windriver.ide.wrlinux.ui.wizards.WRLinuxUserProjectWizard"/>
+<new_wizard_action id="com.windriver.ide.wrlinux.ui.wizards.WRLinuxPlatformProjectWizard"/>
+<new_wizard_action id="com.windriver.ide.wrlinux.ui.wizards.WRLinuxKernelModuleProjectWizard"/>
+<new_wizard_action id="com.windriver.ide.wrlinux.rtcore.wizards.WRLinuxRTCoreKernelAppProjectWizard"/>
+<new_wizard_action id="com.windriver.ide.wrlinux.rtcore.wizards.WRLinuxRTCoreKernelModuleProjectWizard"/>
+<new_wizard_action id="com.windriver.ide.wrlinux.rtcore.wizards.WRLinuxRTCoreApplicationProjectWizard"/>
+<new_wizard_action id="com.windriver.ide.ui.project.wizards.WREmbeddedLinuxApplicationProjectWizard"/>
+<new_wizard_action id="com.windriver.ide.ui.project.wizards.WREmbeddedLinuxKernelProjectWizard"/>
+<new_wizard_action id="com.windriver.ide.ui.project.wizards.WRStandaloneApplicationProjectWizard"/>
+<new_wizard_action id="com.windriver.ide.osconfig.ui.screen.WRBSPProjectWizard"/>
+<new_wizard_action id="com.windriver.ide.ui.project.wizards.WRDownloadAbleModuleProjectWizard"/>
+<new_wizard_action id="com.windriver.ide.vxFS.wizards.WRFSWizard"/>
+<new_wizard_action id="com.windriver.ide.osconfig.ui.screen.BIPWizard"/>
+<new_wizard_action id="com.windriver.ide.ui.project.wizards.WRRealTimeProcessProjectWizard"/>
+<new_wizard_action id="com.windriver.ide.ui.project.wizards.WRSharedLibProjectWizard"/>
+<new_wizard_action id="com.windriver.ide.ui.project.wizards.WRVxWorks55ApplicationProjectWizard"/>
+<new_wizard_action id="com.windriver.ide.vxworks653.ui.wizards.WRVxWorks653IntegrationProjectWizard"/>
+<new_wizard_action id="com.windriver.ide.vxworks653.ui.wizards.WRVxWorks653CRProjectWizard"/>
+<new_wizard_action id="com.windriver.ide.vxworks653.ui.wizards.WRVxWorks653MOSProjectWizard"/>
+<new_wizard_action id="com.windriver.ide.vxworks653.ui.wizards.WRVxWorks653ACEProjectWizard"/>
+<new_wizard_action id="com.windriver.ide.vxworks653.ui.wizards.WRVxWorks653POSProjectWizard"/>
+<new_wizard_action id="com.windriver.ide.vxworks653.ui.wizards.WRVxWorks653ApplicationProjectWizard"/>
+<new_wizard_action id="com.windriver.ide.vxworks653.ui.wizards.WRVxWorks653SLProjectWizard"/>
+<new_wizard_action id="com.windriver.ide.vxworks653.ui.wizards.WRVxWorks653SDProjectWizard"/>
+<new_wizard_action id="com.windriver.ide.vxworks653.ui.wizards.WRVxWorks653UCRProjectWizard"/>
+<new_wizard_action id="com.windriver.ide.ui.project.wizards.WRVxWorks653PlatformProjectWizard"/>
+<new_wizard_action id="com.windriver.ide.ui.project.wizards.WRVxWorks653ApplicationProjectWizard"/>
+<new_wizard_action id="com.windriver.ide.ui.project.wizards.WRUserProjectWizard"/>
+<new_wizard_action id="com.windriver.ide.ui.project.wizards.WRNativeApplicationProjectWizard"/>
+<new_wizard_action id="org.eclipse.ui.wizards.new.folder"/>
+<new_wizard_action id="org.eclipse.ui.wizards.new.file"/>
+<new_wizard_action id="com.windriver.ide.ui.project.wizards.WRNewFileWizard"/>
+<perspective_action id="com.windriver.ide.perspective.ADE"/>
+<perspective_action id="DFE"/>
+<perspective_action id="com.windriver.ide.perspective.OCD"/>
+<perspective_action id="com.windriver.scopetools.memscope.perspective.MemScopePerspective"/>
+<perspective_action id="com.windriver.scopetools.profilescope.perspective.ProfileScopePerspective"/>
+<perspective_action id="org.eclipse.rse.ui.view.SystemPerspective"/>
+<view id="org.eclipse.ui.navigator.ProjectExplorer"/>
+<view id="com.windriver.ide.launch.ui.DebugSymbolBrowserView"/>
+<view id="org.eclipse.rse.ui.view.systemView"/>
+<view id="org.eclipse.debug.ui.DebugView"/>
+<view id="org.eclipse.debug.ui.BreakpointView"/>
+<view id="org.eclipse.debug.ui.VariableView"/>
+<view id="org.eclipse.debug.ui.RegisterView"/>
+<view id="org.eclipse.debug.ui.ExpressionView"/>
+<view id="org.eclipse.debug.ui.MemoryView"/>
+<view id="org.eclipse.pde.runtime.LogView"/>
+<view id="org.eclipse.ui.views.TaskList"/>
+<view id="org.eclipse.tm.terminal.view.TerminalView"/>
+<view id="org.eclipse.ui.views.ProblemView"/>
+<view id="org.eclipse.ui.views.PropertySheet"/>
+<view id="com.windriver.ide.ui.build.WRBuildConsoleView"/>
+<view id="org.eclipse.ui.console.ConsoleView"/>
+<fastViewBars/>
+<layout>
+<mainWindow>
+<info folder="true" part="left0">
+<folder activePageID="org.eclipse.ui.navigator.ProjectExplorer" appearance="2" expanded="2">
+<page content="org.eclipse.ui.navigator.ProjectExplorer" label="Project Explorer"/>
+<page content="com.windriver.ide.launch.ui.DebugSymbolBrowserView" label="Debug Symbol Browser"/>
+<page content="com.windriver.ide.ui.project.WRProjectView" label="LabelNotFound"/>
+<page content="com.windriver.ide.ui.project.WRFileView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.internal.presentations.r33.WorkbenchPresentationFactory_33">
+<part id="0"/>
+<part id="1"/>
+</presentation>
+</folder>
+</info>
+<info folder="true" part="stickyFolderRight" ratio="0.7496318" ratioLeft="1018" ratioRight="340" relationship="2" relative="left0">
+<folder appearance="2" expanded="2">
+<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
+<page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
+<page content="org.eclipse.ui.cheatsheets.views.CheatSheetView" label="LabelNotFound"/>
+</folder>
+</info>
+<info part="org.eclipse.ui.editorss" ratio="0.1896679" ratioLeft="257" ratioRight="1098" relationship="2" relative="left0"/>
+<info folder="true" part="right0" ratio="0.66118723" ratioLeft="724" ratioRight="371" relationship="2" relative="org.eclipse.ui.editorss">
+<folder activePageID="org.eclipse.debug.ui.DebugView" appearance="2" expanded="2">
+<page content="org.eclipse.debug.ui.DebugView" label="Debug"/>
+<presentation id="org.eclipse.ui.internal.presentations.r33.WorkbenchPresentationFactory_33">
+<part id="0"/>
+</presentation>
+</folder>
+</info>
+<info folder="true" part="right1" ratio="0.45777026" ratioLeft="271" ratioRight="321" relationship="4" relative="right0">
+<folder activePageID="org.eclipse.debug.ui.BreakpointView" appearance="2" expanded="2">
+<page content="org.eclipse.debug.ui.BreakpointView" label="Breakpoints"/>
+<presentation id="org.eclipse.ui.internal.presentations.r33.WorkbenchPresentationFactory_33">
+<part id="0"/>
+</presentation>
+</folder>
+</info>
+<info folder="true" part="right2" ratio="0.13522013" ratioLeft="43" ratioRight="275" relationship="4" relative="right1">
+<folder activePageID="org.eclipse.debug.ui.VariableView" appearance="2" expanded="2">
+<page content="org.eclipse.debug.ui.VariableView" label="Variables"/>
+<page content="org.eclipse.debug.ui.RegisterView" label="Registers"/>
+<page content="org.eclipse.debug.ui.ExpressionView" label="Expressions"/>
+<page content="org.eclipse.debug.ui.MemoryView" label="Memory"/>
+<presentation id="org.eclipse.ui.internal.presentations.r33.WorkbenchPresentationFactory_33">
+<part id="0"/>
+<part id="1"/>
+<part id="2"/>
+<part id="3"/>
+</presentation>
+</folder>
+</info>
+<info folder="true" part="bottom" ratio="0.8733108" ratioLeft="517" ratioRight="75" relationship="4" relative="org.eclipse.ui.editorss">
+<folder activePageID="com.windriver.ide.ui.build.WRBuildConsoleView" appearance="2" expanded="2">
+<page content="org.eclipse.pde.runtime.LogView" label="Error Log"/>
+<page content="org.eclipse.ui.views.TaskList" label="Tasks"/>
+<page content="org.eclipse.tm.terminal.view.TerminalView" label="Terminal 1"/>
+<page content="org.eclipse.ui.views.ProblemView" label="Problems"/>
+<page content="org.eclipse.ui.views.PropertySheet" label="Properties"/>
+<page content="com.windriver.ide.ui.build.WRBuildConsoleView" label="Build Console"/>
+<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
+<presentation id="org.eclipse.ui.internal.presentations.r33.WorkbenchPresentationFactory_33">
+<part id="0"/>
+<part id="1"/>
+<part id="2"/>
+<part id="3"/>
+<part id="4"/>
+<part id="5"/>
+<part id="6"/>
+</presentation>
+</folder>
+</info>
+<info folder="true" part="left1" ratio="0.49915966" ratioLeft="297" ratioRight="298" relationship="4" relative="left0">
+<folder activePageID="org.eclipse.rse.ui.view.systemView" appearance="2" expanded="2">
+<page content="org.eclipse.rse.ui.view.systemView" label="Remote Systems"/>
+<presentation id="org.eclipse.ui.internal.presentations.r33.WorkbenchPresentationFactory_33">
+<part id="0"/>
+</presentation>
+</folder>
+</info>
+</mainWindow>
+</layout>
+</perspective>
+</perspectives>
+<workingSets/>
+<navigationHistory>
+<editors>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/TimerDrivers/timer1.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/TimerDrivers/timer2.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/TimerDrivers/vxsimHostLibP.h"/>
+<editor factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/home/kartha/WindRiver/vxworks-6.6/target/h/private/vxsimHostLibP.h" project="TimerDrivers"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/TimerDrivers/testtimer.c"/>
+<editor factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/home/kartha/WindRiver/vxworks-6.6/target/h/drv/timer/ppcDecTimer.h" project="TimerDrivers"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/TimerDrivers/timer2.c"/>
+<editor factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/home/kartha/WindRiver/vxworks-6.6/target/h/sysLib.h" project="TimerDrivers"/>
+<editor factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/home/kartha/WindRiver/vxworks-6.6/target/h/intLib.h" project="TimerDrivers"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/TimerDrivers/LPC2148timer.h"/>
+<editor factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/home/kartha/WindRiver/vxworks-6.6/target/h/private/vxsimHostLibP.h" project="TimerDrivers"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/TimerDrivers/timer1.c"/>
+</editors>
+<item historyLabel="timer1.c" index="0">
+<position info="not_deleted" x="242" y="0"/>
+</item>
+<item historyLabel="timer1.c" index="0">
+<position/>
+</item>
+<item historyLabel="timer1.c" index="0">
+<position info="not_deleted" x="294" y="0"/>
+</item>
+<item historyLabel="timer2.c" index="1">
+<position info="not_deleted" x="7765" y="30"/>
+</item>
+<item historyLabel="timer1.c" index="0">
+<position info="not_deleted" x="304" y="0"/>
+</item>
+<item historyLabel="timer2.c" index="1">
+<position info="not_deleted" x="7765" y="30"/>
+</item>
+<item historyLabel="timer1.c" index="0">
+<position info="not_deleted" x="694" y="0"/>
+</item>
+<item historyLabel="vxsimHostLibP.h" index="2">
+<position/>
+</item>
+<item historyLabel="timer1.c" index="0">
+<position info="not_deleted" x="675" y="0"/>
+</item>
+<item historyLabel="vxsimHostLibP.h" index="3">
+<position info="not_deleted" x="3756" y="30"/>
+</item>
+<item historyLabel="vxsimHostLibP.h" index="2">
+<position info="not_deleted" x="3756" y="37"/>
+</item>
+<item historyLabel="timer1.c" index="0">
+<position info="not_deleted" x="675" y="0"/>
+</item>
+<item historyLabel="vxsimHostLibP.h" index="2">
+<position info="not_deleted" x="3756" y="37"/>
+</item>
+<item historyLabel="timer1.c" index="0">
+<position info="not_deleted" x="610" y="0"/>
+</item>
+<item historyLabel="testtimer.c" index="4">
+<position/>
+</item>
+<item historyLabel="timer1.c" index="0">
+<position info="not_deleted" x="610" y="0"/>
+</item>
+<item historyLabel="ppcDecTimer.h" index="5">
+<position info="not_deleted" x="654" y="12"/>
+</item>
+<item historyLabel="timer1.c" index="0">
+<position info="not_deleted" x="437" y="0"/>
+</item>
+<item historyLabel="timer1.c" index="0">
+<position info="not_deleted" x="1030" y="45"/>
+</item>
+<item historyLabel="timer2.c" index="6">
+<position/>
+</item>
+<item historyLabel="sysLib.h" index="7">
+<position info="not_deleted" x="6744" y="10"/>
+</item>
+<item historyLabel="timer2.c" index="6">
+<position/>
+</item>
+<item historyLabel="intLib.h" index="8">
+<position info="not_deleted" x="7721" y="10"/>
+</item>
+<item historyLabel="timer2.c" index="6">
+<position info="not_deleted" x="2417" y="0"/>
+</item>
+<item historyLabel="intLib.h" index="8">
+<position info="not_deleted" x="7721" y="10"/>
+</item>
+<item historyLabel="timer2.c" index="6">
+<position info="not_deleted" x="2464" y="29"/>
+</item>
+<item historyLabel="intLib.h" index="8">
+<position info="not_deleted" x="7721" y="10"/>
+</item>
+<item historyLabel="timer2.c" index="6">
+<position info="not_deleted" x="2828" y="0"/>
+</item>
+<item historyLabel="timer2.c" index="6">
+<position info="not_deleted" x="1002" y="0"/>
+</item>
+<item historyLabel="timer2.c" index="6">
+<position info="not_deleted" x="2828" y="0"/>
+</item>
+<item historyLabel="sysLib.h" index="7">
+<position info="not_deleted" x="6744" y="10"/>
+</item>
+<item historyLabel="timer2.c" index="6">
+<position info="not_deleted" x="2828" y="0"/>
+</item>
+<item historyLabel="LPC2148timer.h" index="9">
+<position/>
+</item>
+<item historyLabel="timer2.c" index="6">
+<position info="not_deleted" x="2828" y="0"/>
+</item>
+<item historyLabel="LPC2148timer.h" index="9">
+<position info="not_deleted" x="2364" y="0"/>
+</item>
+<item historyLabel="timer2.c" index="6">
+<position info="not_deleted" x="494" y="0"/>
+</item>
+<item historyLabel="timer1.c" index="0">
+<position info="not_deleted" x="1608" y="0"/>
+</item>
+<item historyLabel="vxsimHostLibP.h" index="10">
+<position info="not_deleted" x="3588" y="21"/>
+</item>
+<item historyLabel="LPC2148timer.h" index="9">
+<position info="not_deleted" x="2364" y="0"/>
+</item>
+<item historyLabel="timer1.c" index="0">
+<position info="not_deleted" x="1608" y="0"/>
+</item>
+<item historyLabel="timer1.c" index="0">
+<position info="not_deleted" x="1117" y="0"/>
+</item>
+<item historyLabel="timer1.c" index="0">
+<position/>
+</item>
+<item historyLabel="vxsimHostLibP.h" index="10">
+<position info="not_deleted" x="7890" y="20"/>
+</item>
+<item historyLabel="timer1.c" index="0">
+<position info="not_deleted" x="1966" y="0"/>
+</item>
+<item historyLabel="timer1.c" index="0">
+<position info="not_deleted" x="807" y="0"/>
+</item>
+<item historyLabel="timer2.c" index="6">
+<position info="not_deleted" x="494" y="0"/>
+</item>
+<item historyLabel="LPC2148timer.h" index="9">
+<position info="not_deleted" x="2364" y="0"/>
+</item>
+<item historyLabel="vxsimHostLibP.h" index="10">
+<position info="not_deleted" x="7890" y="20"/>
+</item>
+<item active="true" historyLabel="timer1.c" index="11">
+<position info="not_deleted" x="807" y="0"/>
+</item>
+</navigationHistory>
+<input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
+</page>
+<workbenchWindowAdvisor/>
+<actionBarAdvisor/>
+<trimLayout>
+<trimArea IMemento.internal.id="128">
+<trimItem IMemento.internal.id="org.eclipse.ui.internal.WorkbenchWindow.topBar"/>
+</trimArea>
+<trimArea IMemento.internal.id="1024">
+<trimItem IMemento.internal.id="org.eclise.ui.internal.FastViewBar"/>
+<trimItem IMemento.internal.id="org.eclipse.jface.action.StatusLineManager"/>
+<trimItem IMemento.internal.id="org.eclipse.ui.internal.HeapStatus"/>
+<trimItem IMemento.internal.id="org.eclipse.ui.internal.progress.ProgressRegion"/>
+</trimArea>
+</trimLayout>
+</window>
+<mruList>
+<file factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="vxsimHostLibP.h" tooltip="/home/kartha/WindRiver/vxworks-6.6/target/h/private/vxsimHostLibP.h">
+<persistable path="/home/kartha/WindRiver/vxworks-6.6/target/h/private/vxsimHostLibP.h" project="TimerDrivers"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="LPC2148timer.h" tooltip="TimerDrivers/LPC2148timer.h">
+<persistable path="/TimerDrivers/LPC2148timer.h"/>
+</file>
+<file factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="intLib.h" tooltip="/home/kartha/WindRiver/vxworks-6.6/target/h/intLib.h">
+<persistable path="/home/kartha/WindRiver/vxworks-6.6/target/h/intLib.h" project="TimerDrivers"/>
+</file>
+<file factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="sysLib.h" tooltip="/home/kartha/WindRiver/vxworks-6.6/target/h/sysLib.h">
+<persistable path="/home/kartha/WindRiver/vxworks-6.6/target/h/sysLib.h" project="TimerDrivers"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="timer2.c" tooltip="TimerDrivers/timer2.c">
+<persistable path="/TimerDrivers/timer2.c"/>
+</file>
+<file factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="ppcDecTimer.h" tooltip="/home/kartha/WindRiver/vxworks-6.6/target/h/drv/timer/ppcDecTimer.h">
+<persistable path="/home/kartha/WindRiver/vxworks-6.6/target/h/drv/timer/ppcDecTimer.h" project="TimerDrivers"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="testtimer.c" tooltip="TimerDrivers/testtimer.c">
+<persistable path="/TimerDrivers/testtimer.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="vxsimHostLibP.h" tooltip="TimerDrivers/vxsimHostLibP.h">
+<persistable path="/TimerDrivers/vxsimHostLibP.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="timer1.c" tooltip="TimerDrivers/timer1.c">
+<persistable path="/TimerDrivers/timer1.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="config.h" tooltip="New_kernel/linux/config.h">
+<persistable path="/New_kernel/linux/config.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="timer.c" tooltip="New_kernel/timer.c">
+<persistable path="/New_kernel/timer.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="LPC214x.h" tooltip="New_kernel/LPC214x.h">
+<persistable path="/New_kernel/LPC214x.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="LPC214x.h" tooltip="LPC2148/LPC214x.h">
+<persistable path="/LPC2148/LPC214x.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="prjConfig.c" tooltip="LPC2148/prjConfig.c">
+<persistable path="/LPC2148/prjConfig.c"/>
+</file>
+</mruList>
+</workbench>

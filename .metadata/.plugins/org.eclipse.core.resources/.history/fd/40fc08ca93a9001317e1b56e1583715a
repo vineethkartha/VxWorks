@@ -1,0 +1,81 @@
+/* A skeleton of a block device driver in VxWorks
+ * Date: 2-03-2014
+ * Vineeth Kartha*/
+
+#include<vxWorks.h>
+#include<taskLib.h>
+#include<iosLib.h>
+#include<stdio.h>
+#include<semLib.h>
+#include<blkIo.h>
+#include<dosFsLib.h>
+#include<ramDrv.h>
+#include<ioLib.h>
+
+#define DRVNAME "/myBlkDrv"
+
+typedef struct
+{
+	BLK_DEV my_header;
+
+}MY_BLK_DEV;
+
+LOCAL STATUS myBlkRd(MY_BLK_DEV* pDev,int startBlk,int numBlks,char* pBuf )
+{
+	printf("in read\n");
+	return OK;
+}
+LOCAL STATUS myBlkwrt(MY_BLK_DEV* pDev,int startBlk,int numBlks,char* pBuf )
+{
+	printf("in write\n");
+	return OK;
+}
+
+BLK_DEV *myBlkCreate()
+{
+	BLK_DEV *pBlkDev;
+	MY_BLK_DEV *mydv;
+	if ((mydv = (MY_BLK_DEV *)calloc(sizeof (MY_BLK_DEV), 1)) == NULL)
+		{
+		printf("\n Not Possible\n");
+			return (NULL);
+		}
+	pBlkDev=&mydv->my_header;
+	pBlkDev->bd_blksPerTrack=1;
+	pBlkDev->bd_bytesPerBlk=256;
+	pBlkDev->bd_ioctl=NULL;
+	pBlkDev->bd_mode=O_RDONLY |O_WRONLY| O_RDWR;
+	pBlkDev->bd_nBlocks=1;
+	pBlkDev->bd_nHeads=1;
+	pBlkDev->bd_readyChanged=TRUE;
+	pBlkDev->bd_statusChk=0;
+	pBlkDev->bd_removable=TRUE;
+	pBlkDev->bd_reset=NULL;
+	pBlkDev->bd_retry=0;
+	pBlkDev->bd_blkRd=myBlkRd;
+	pBlkDev->bd_blkWrt=myBlkwrt;
+	return (&mydv->my_header);
+}
+
+STATUS myblkDrv_fn(void)
+{
+	/*pBlkDev = myBlkCreate();
+    if(pBlkDev==NULL)
+    	printf("Error\n");
+    else
+    	printf("\n GOOD\n");
+	return OK;*/
+	
+	BLK_DEV *pBlkDev; 
+	    pBlkDev = ramDevCreate(0, 512,1,1, 0); 
+	    if (dosFsDevCreate ("DEV1:", (device_t)pBlkDev, 20, NULL) == ERROR) 
+	    { 
+	        printf("Error"); 
+	    }; 
+	     
+	    /* if you want to format then do the following */ 
+	    if (dosFsVolFormat ("DEV1:", 2, NULL) == ERROR) 
+	    { 
+	        printf("Format Error\n"); 
+	    }
+}

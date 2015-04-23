@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="TargetConnectionDlg">
+		<item key="TargetConnectionTypePage.com.windriver.ide.target.vxsim.VxSimConnectType.defaultInitialized" value="true"/>
+		<item key="TargetConnectionSummaryPage.com.windriver.ide.target.tsconn.linux.usermode.hostdev.connectOnFinish" value="true"/>
+		<item key="TargetConnectionSummaryPage.com.windriver.ide.target.vxsim.VxSimConnectType.connectOnFinish" value="true"/>
+		<item key="com.windriver.ide.target.ui.wizard.pages.VxsimTargetServerOptionsPage.TargetServerOptionsControl.STORE_OPTION_VERBOSE_ID" value="true"/>
+		<item key="TargetConnectionTypePage.com.windriver.ide.target.tsconn.linux.usermode.hostdev.defaultInitialized" value="true"/>
+		<list key="com.windriver.ide.target.ui.wizard.pages.VxsimTargetServerOptionsPage.TargetServerOptionsControl.STORE_OPTIONS_ID">
+			<item value="-R /home/kartha/programs/VxWorks -RW -Bt 3 -A"/>
+			<item value="-R /home/kartha/programs/VxWorks -RW -Bt 10 -A vxsim0"/>
+		</list>
+		<section name="com.windriver.ide.target.ui.wizard.pages.VxWorksSimulatorWizardPage">
+			<section name="com.windriver.ide.target.ui.wizard.controls.VxsimKernelImageSelectionControl">
+				<item key="VxWorksSimulatorWizardPage.KernelImageSelectionControl.filePathFromTargetButton.state" value="false"/>
+				<section name="com.windriver.ide.target.ui.wizard.pages.VxWorksSimulatorWizardPage">
+					<section name="com.windriver.ide.target.ui.wizard.controls.VxWorksKernelImageSelectionControl$VxWorksKernelImageFileSelectionControl">
+						<list key="VxWorksSimulatorWizardPage.SelectedKernelImageHistory">
+							<item value="/home/kartha/programs/VxWorks/New_kernel/default/vxWorks"/>
+							<item value="/home/kartha/WindRiver/vxworks-6.6/target/proj/linux_diab/default/vxWorks"/>
+							<item value="/home/kartha/programs/VxWorks/dosKernel/default/vxWorks"/>
+							<item value="/home/kartha/programs/VxWorks/sample/default/vxWorks"/>
+						</list>
+					</section>
+				</section>
+			</section>
+		</section>
+		<section name="com.windriver.ide.target.ui.wizard.pages.VxsimTargetServerOptionsPage">
+			<section name="com.windriver.ide.target.ui.wizard.pages.VxsimTargetServerOptionsPage$1">
+				<item key="com.windriver.ide.target.ui.wizard.pages.VxsimTargetServerOptionsPage.WdbproxyTipcConnectionTypeConfigurationPanel.portType" value="70"/>
+				<item key="com.windriver.ide.target.ui.wizard.pages.VxsimTargetServerOptionsPage.wdbproxy.TCP.port" value=""/>
+				<item key="com.windriver.ide.target.ui.wizard.pages.VxsimTargetServerOptionsPage.wdbproxy.port" value="0x4444"/>
+				<item key="com.windriver.ide.target.ui.wizard.pages.VxsimTargetServerOptionsPage.WdbproxyTipcConnectionTypeConfigurationPanel.address" value=""/>
+				<item key="com.windriver.ide.target.ui.wizard.pages.VxsimTargetServerOptionsPage.TargetServerBackendSelectionControl.selectedBackendType" value="wdbpipe"/>
+				<item key="com.windriver.ide.target.ui.wizard.pages.VxsimTargetServerOptionsPage.TargetServerBackendSelectionControl.selectedCpu" value="(default from target)"/>
+				<item key="com.windriver.ide.target.ui.wizard.pages.VxsimTargetServerOptionsPage.WdbproxyTipcConnectionTypeConfigurationPanel.portInstance" value="71"/>
+				<item key="com.windriver.ide.target.ui.wizard.pages.VxsimTargetServerOptionsPage.wdbproxy.type" value="UDP"/>
+				<item key="com.windriver.ide.target.ui.wizard.pages.VxsimTargetServerOptionsPage.wdbrpc..port" value=""/>
+				<item key="com.windriver.ide.target.ui.wizard.pages.VxsimTargetServerOptionsPage.wdbproxy.UDP.port" value=""/>
+				<list key="com.windriver.ide.target.ui.wizard.pages.VxsimTargetServerOptionsPage.wdbproxy.targetNameAddress">
+				</list>
+				<list key="com.windriver.ide.target.ui.wizard.pages.VxsimTargetServerOptionsPage.wdbproxy.UDP.targetNameAddress">
+				</list>
+				<list key="com.windriver.ide.target.ui.wizard.pages.VxsimTargetServerOptionsPage.wdbrpc..targetNameAddress">
+				</list>
+				<list key="com.windriver.ide.target.ui.wizard.pages.VxsimTargetServerOptionsPage.wdbproxy.TCP.targetNameAddress">
+				</list>
+			</section>
+		</section>
+	</section>
+	<section name="WTXConsolePropertiesDialog">
+		<section name="vxsim0@nirvana">
+			<item key="consoleStartupOptions" value=" -io -s -n -w"/>
+		</section>
+	</section>
+</section>
